@@ -62,6 +62,24 @@
             height: 100vh;
         }
 
+        /* Theme styles */
+        body.theme-dark {
+            --bg-dark: #0f0f1a;
+            --bg-section: rgba(30, 30, 46, 0.92);
+        }
+
+        body.theme-blue {
+            --bg-dark: #0a1628;
+            --bg-section: rgba(20, 40, 80, 0.92);
+            --primary-orange: #4a90e2;
+        }
+
+        body.theme-green {
+            --bg-dark: #0a1a0a;
+            --bg-section: rgba(20, 50, 20, 0.92);
+            --primary-orange: #4caf50;
+        }
+
         /* Main scrollable container */
         .main-container {
             height: 100vh;
@@ -171,6 +189,34 @@
             0% { transform: translateX(-50%) translateY(-100px); }
             60% { transform: translateX(-50%) translateY(10px); }
             100% { transform: translateX(-50%) translateY(0); }
+        }
+
+        /* Coin ball timer display */
+        .coin-ball-timer {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));
+            border: 2px solid var(--coin-color);
+            border-radius: 15px;
+            padding: 10px 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+            z-index: 100;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .coin-ball-timer.show {
+            display: flex;
+        }
+
+        .coin-ball-timer-text {
+            color: var(--coin-color);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         /* —— LEGENDARY AVATAR STYLES —— */
@@ -307,6 +353,364 @@
             color: var(--coin-color);
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             animation: luminousGlow 2s infinite;
+        }
+
+        /* Daily login button */
+        .daily-login-btn {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-blue), #2980b9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: none;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .daily-login-btn.show {
+            display: block;
+        }
+
+        .daily-login-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.5);
+        }
+
+        /* Coin alley button */
+        .coin-alley-btn {
+            position: fixed;
+            top: 140px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-gold), #FFA500);
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: none;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .coin-alley-btn.show {
+            display: block;
+        }
+
+        .coin-alley-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Daily login modal */
+        .daily-login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+            background: linear-gradient(135deg, rgba(15, 15, 26, 0.9), rgba(10, 10, 20, 0.95));
+            backdrop-filter: blur(20px);
+        }
+
+        .daily-login-content {
+            background: linear-gradient(145deg, rgba(30, 30, 46, 0.95), rgba(20, 20, 35, 0.95));
+            margin: 2% auto;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                0 0 100px rgba(52, 152, 219, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            position: relative;
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .daily-login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .daily-login-header h2 {
+            color: var(--primary-blue);
+            font-size: 36px;
+            margin: 0 0 10px 0;
+            text-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+            animation: luminousGlow 2s infinite;
+        }
+
+        .daily-login-timer {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .daily-login-timer h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .timer-display {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--coin-color);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .daily-rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .daily-reward-day {
+            background: linear-gradient(145deg, rgba(15, 15, 26, 0.8), rgba(20, 20, 31, 0.8));
+            border: 2px solid rgba(52, 152, 219, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .daily-reward-day:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .daily-reward-day.completed {
+            background: rgba(40, 167, 69, 0.3);
+            border-color: var(--success-color);
+        }
+
+        .daily-reward-day.current {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: var(--coin-color);
+            animation: pulse 2s infinite;
+        }
+
+        .daily-reward-day.future {
+            opacity: 0.5;
+        }
+
+        .day-number {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .day-reward {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--coin-color);
+            margin-bottom: 5px;
+        }
+
+        .day-special {
+            font-size: 16px;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .claim-daily-btn {
+            background: linear-gradient(135deg, var(--primary-green), #20c997);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .claim-daily-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #20c997, #17a2b8);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.4);
+        }
+
+        .claim-daily-btn:disabled {
+            background: rgba(128, 128, 128, 0.5);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* Coin alley modal */
+        .coin-alley-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+            background: linear-gradient(135deg, rgba(15, 15, 26, 0.9), rgba(10, 10, 20, 0.95));
+            backdrop-filter: blur(20px);
+        }
+
+        .coin-alley-content {
+            background: linear-gradient(145deg, rgba(30, 30, 46, 0.95), rgba(20, 20, 35, 0.95));
+            margin: 2% auto;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                0 0 100px rgba(255, 215, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .coin-alley-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .coin-alley-header h2 {
+            color: var(--coin-color);
+            font-size: 36px;
+            margin: 0 0 10px 0;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: luminousGlow 2s infinite;
+        }
+
+        .coin-alley-progress {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            height: 40px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .coin-alley-progress-bar {
+            background: linear-gradient(90deg, var(--coin-color), #FFA500);
+            height: 100%;
+            transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coin-alley-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .coin-alley-progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .coin-alley-rewards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .coin-alley-reward {
+            background: linear-gradient(145deg, rgba(15, 15, 26, 0.8), rgba(20, 20, 31, 0.8));
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .coin-alley-reward.unlocked {
+            background: rgba(40, 167, 69, 0.3);
+            border-color: var(--success-color);
+        }
+
+        .coin-alley-reward.next {
+            border-color: var(--coin-color);
+            animation: pulse 2s infinite;
+        }
+
+        .coin-alley-reward:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .reward-coins {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--coin-color);
+            margin-bottom: 10px;
+        }
+
+        .reward-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .reward-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reward-status {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #888;
         }
 
         /* User login modal */
@@ -676,11 +1080,6 @@
             animation: shine 2s infinite;
         }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
         .shop-progress-text {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.8);
@@ -732,6 +1131,21 @@
         .shop-item.rare {
             border-color: #00BFFF;
             background: linear-gradient(145deg, rgba(0, 191, 255, 0.1), rgba(0, 100, 200, 0.1));
+        }
+
+        .shop-item.mythical {
+            border-color: #FF4500;
+            background: linear-gradient(145deg, rgba(255, 69, 0, 0.1), rgba(178, 34, 34, 0.1));
+            animation: mythicalGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes mythicalGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 69, 0, 0.8);
+            }
         }
 
         /* —— NEW ADVANCED ANIMATIONS —— */
@@ -1280,6 +1694,20 @@
             z-index: 10;
         }
 
+        .avatar-option {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: 5px;
+        }
+
         .avatar-option.premium {
             border: 3px solid transparent;
             background: linear-gradient(white, white) padding-box,
@@ -1323,19 +1751,6 @@
         }
 
         /* Enhanced avatar option styling */
-        .avatar-option {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-            overflow: hidden;
-            position: relative;
-            background: linear-gradient(145deg, #1a1a2e, #16213e);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
         .avatar-option::before {
             content: '';
             position: absolute;
@@ -3131,6 +3546,64 @@
             box-shadow: 0 5px 15px rgba(255, 119, 0, 0.3);
         }
 
+        /* Stylization settings */
+        .style-option {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(15, 15, 26, 0.4);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .style-option:hover {
+            background: rgba(15, 15, 26, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .color-option.active {
+            border-color: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .color-option::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .color-option.active::after {
+            opacity: 1;
+        }
+
         /* —— RESPONSIVE DESIGN —— */
         @media (max-width: 768px) {
             .user-panel, .help-dropdown, .language-dropdown {
@@ -3152,7 +3625,7 @@
                 right: -10px;
             }
 
-            .modal-content, .auth-content, .settings-content {
+            .modal-content, .auth-content, .settings-content, .shop-content, .daily-login-content, .coin-alley-content {
                 margin: 20px;
                 padding: 30px;
             }
@@ -3188,6 +3661,14 @@
             .shop-btn {
                 padding: 8px 15px;
                 font-size: 14px;
+            }
+
+            .daily-rewards-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .coin-alley-rewards {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
             }
         }
 
@@ -3285,7 +3766,7 @@
         })();
 
         // Version control
-        const APP_VERSION = '2.6.0';
+        const APP_VERSION = '2.7.0';
         const LAST_VERSION_KEY = 'lastSeenVersion';
         
         // Daily login rewards with 7-day cycle
@@ -3299,7 +3780,7 @@
             { day: 7, coins: 150, special: 'loyalPlayerAvatar' }
         ];
 
-        // Shop avatars configuration with rarity
+        // Shop avatars configuration with rarity - EXPANDED
         const shopAvatars = [
             // Common avatars (50-125 coins)
             { name: '🌟 Star Guardian', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=StarGuardian&backgroundColor=ffcc00,ffd700', price: 50, rarity: 'common' },
@@ -3327,8 +3808,39 @@
             { name: '🔮 Crystal Sage', url: 'https://api.dicebear.com/7.x/adventurer/svg?seed=CrystalSage&backgroundColor=9370db,ba55d3', price: 1000, rarity: 'legendary' },
             { name: '🌌 Void Walker', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=VoidWalker&backgroundColor=000033,191970', price: 1100, rarity: 'legendary' },
             { name: '🐲 Dragon Emperor', url: 'https://api.dicebear.com/7.x/personas/svg?seed=DragonEmperor&backgroundColor=b22222,dc143c', price: 1200, rarity: 'legendary' },
-            { name: '👑 Ultra VIP Shop', url: 'https://api.dicebear.com/7.x/shapes/svg?seed=UltraVIPShop&backgroundColor=ff0080,ff1493,ffd700', price: 1300, rarity: 'legendary' }
+            { name: '👑 Ultra VIP Shop', url: 'https://api.dicebear.com/7.x/shapes/svg?seed=UltraVIPShop&backgroundColor=ff0080,ff1493,ffd700', price: 1300, rarity: 'legendary' },
+            
+            // NEW Mythical avatars (1400-2000 coins)
+            { name: '🌌 Cosmic Entity', url: 'https://api.dicebear.com/7.x/shapes/svg?seed=CosmicEntity&backgroundColor=000033,4b0082,ff00ff', price: 1400, rarity: 'mythical' },
+            { name: '🔥 Phoenix Lord', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=PhoenixLord&backgroundColor=ff4500,ffd700,ff0000', price: 1500, rarity: 'mythical' },
+            { name: '⚡ Storm Bringer', url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=StormBringer&backgroundColor=000080,ffff00,ffffff', price: 1600, rarity: 'mythical' },
+            { name: '💎 Diamond Guardian', url: 'https://api.dicebear.com/7.x/big-smile/svg?seed=DiamondGuardian&backgroundColor=00ffff,ffffff,e0ffff', price: 1700, rarity: 'mythical' },
+            { name: '🌟 Celestial Being', url: 'https://api.dicebear.com/7.x/adventurer/svg?seed=CelestialBeing&backgroundColor=ffd700,ffffff,ffffe0', price: 1800, rarity: 'mythical' },
+            { name: '🔮 Time Keeper', url: 'https://api.dicebear.com/7.x/personas/svg?seed=TimeKeeper&backgroundColor=4b0082,ff00ff,8a2be2', price: 1900, rarity: 'mythical' },
+            { name: '👁️ All-Seeing Oracle', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=AllSeeingOracle&backgroundColor=ff1493,ff69b4,ff00ff', price: 2000, rarity: 'mythical' },
+            { name: '🌀 Dimension Walker', url: 'https://api.dicebear.com/7.x/shapes/svg?seed=DimensionWalker&backgroundColor=00ff00,00ffff,0000ff', price: 2100, rarity: 'mythical' },
+            { name: '⭐ Galaxy Emperor', url: 'https://api.dicebear.com/7.x/pixel-art/svg?seed=GalaxyEmperor&backgroundColor=000000,4b0082,ff00ff', price: 2200, rarity: 'mythical' },
+            { name: '🎆 Infinity Master', url: 'https://api.dicebear.com/7.x/lorelei/svg?seed=InfinityMaster&backgroundColor=ff0000,ffff00,00ff00,00ffff,0000ff,ff00ff', price: 2500, rarity: 'mythical' }
         ];
+
+        // Coin alley avatars
+        const coinAlleyAvatars = [];
+        for (let i = 100; i <= 30000; i += 100) {
+            let avatarName = `Avatar ${i/100}`;
+            let rarity = 'common';
+            
+            if (i >= 10000) rarity = 'mythical';
+            else if (i >= 5000) rarity = 'legendary';
+            else if (i >= 2000) rarity = 'epic';
+            else if (i >= 1000) rarity = 'rare';
+            
+            coinAlleyAvatars.push({
+                coins: i,
+                name: avatarName,
+                url: `https://api.dicebear.com/7.x/avataaars/svg?seed=CoinAlley${i}&backgroundColor=${Math.random().toString(16).substr(2, 6)}`,
+                rarity: rarity
+            });
+        }
 
         // Special avatars
         const premiumAvatarNames = ['⚔️ Cyber Warrior', '🐉 Dragon Master', '🚀 Space Commander', '🧙 Mystic Wizard', '🥷 Shadow Ninja'];
@@ -3352,21 +3864,57 @@
                 this.velocity = { x: 5, y: 5 };
                 this.position = { x: 0, y: 0 };
                 this.animationId = null;
-                this.lastEventTime = localStorage.getItem('lastCoinBallEvent') ? parseInt(localStorage.getItem('lastCoinBallEvent')) : 0;
-                this.eventDuration = 2 * 60 * 1000; // 2 minutes
-                this.eventInterval = 60 * 60 * 1000; // 60 minutes
+                this.nextEventTime = this.calculateNextEventTime();
                 this.checkEventTimer();
+            }
+
+            calculateNextEventTime() {
+                const now = new Date();
+                const minutes = now.getMinutes();
+                const seconds = now.getSeconds();
+                const milliseconds = now.getMilliseconds();
+                
+                // Calculate milliseconds until next hour
+                const msUntilNextHour = ((60 - minutes - 1) * 60 + (60 - seconds)) * 1000 - milliseconds;
+                
+                // Next event is at the next hour
+                return Date.now() + msUntilNextHour;
             }
 
             checkEventTimer() {
                 setInterval(() => {
                     const now = Date.now();
-                    const timeSinceLastEvent = now - this.lastEventTime;
                     
-                    if (timeSinceLastEvent >= this.eventInterval && !this.isActive) {
+                    if (now >= this.nextEventTime && !this.isActive && currentUser) {
                         this.startEvent();
+                        this.nextEventTime = this.calculateNextEventTime();
                     }
-                }, 5000); // Check every 5 seconds
+                    
+                    this.updateTimerDisplay();
+                }, 1000);
+            }
+
+            updateTimerDisplay() {
+                const timerElement = document.querySelector('.coin-ball-timer');
+                if (!timerElement || !currentUser) return;
+                
+                const now = Date.now();
+                const timeUntilNext = Math.max(0, this.nextEventTime - now);
+                
+                const minutes = Math.floor(timeUntilNext / 60000);
+                const seconds = Math.floor((timeUntilNext % 60000) / 1000);
+                
+                const timerText = document.querySelector('.coin-ball-timer-text');
+                if (timerText) {
+                    const lang = document.documentElement.lang;
+                    if (lang === 'pl') {
+                        timerText.textContent = `Następna kula: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    } else {
+                        timerText.textContent = `Next ball: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    }
+                }
+                
+                timerElement.classList.add('show');
             }
 
             getRandomCoins() {
@@ -3378,21 +3926,18 @@
             }
 
             startEvent() {
-                if (this.isActive) return;
+                if (this.isActive || !currentUser) return;
                 
                 this.isActive = true;
-                this.lastEventTime = Date.now();
-                localStorage.setItem('lastCoinBallEvent', this.lastEventTime.toString());
-                
                 this.currentCoins = this.getRandomCoins();
                 this.createBall();
                 this.showNotification();
                 this.startAnimation();
                 
-                // End event after duration
+                // End event after 2 minutes
                 setTimeout(() => {
                     this.endEvent();
-                }, this.eventDuration);
+                }, 120000);
             }
 
             createBall() {
@@ -3543,6 +4088,7 @@
                         registrationDate: new Date().toISOString(),
                         lastLogin: new Date().toISOString(),
                         downloadedGames: [],
+                        gameDownloadCoins: {}, // Track which games gave coins
                         premiumAvatarsUnlocked: false,
                         ultraVipUnlocked: false,
                         vipUnlocked: false,
@@ -3553,20 +4099,25 @@
                         timeSpentMinutes: 0,
                         lastActiveTime: new Date().toISOString(),
                         shopAvatars: [],
+                        coinAlleyAvatars: [],
                         mailbox: [],
                         status: 'active',
                         stayLoggedIn: stayLoggedIn,
                         sessionExpiry: stayLoggedIn ? new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() : null,
                         preferences: {
-                            theme: 'orange',
+                            theme: 'dark',
                             notifications: true,
                             highContrast: false,
                             fontSize: 'medium',
-                            autoSave: true
+                            autoSave: true,
+                            soundEffects: true,
+                            animations: true,
+                            language: 'pl'
                         },
                         loginStreak: 1,
                         lastLoginDate: new Date().toDateString(),
-                        streakStartDate: new Date().toISOString()
+                        streakStartDate: new Date().toISOString(),
+                        lastDailyBonusClaim: null
                     };
 
                     // Check if user already exists
@@ -3574,6 +4125,7 @@
                     if (existingUser) {
                         // Preserve existing data
                         googleUser.downloadedGames = existingUser.downloadedGames || [];
+                        googleUser.gameDownloadCoins = existingUser.gameDownloadCoins || {};
                         googleUser.premiumAvatarsUnlocked = existingUser.premiumAvatarsUnlocked || false;
                         googleUser.ultraVipUnlocked = existingUser.ultraVipUnlocked || false;
                         googleUser.vipUnlocked = existingUser.vipUnlocked || false;
@@ -3583,12 +4135,14 @@
                         googleUser.totalCoinsEarned = existingUser.totalCoinsEarned || 100;
                         googleUser.timeSpentMinutes = existingUser.timeSpentMinutes || 0;
                         googleUser.shopAvatars = existingUser.shopAvatars || [];
+                        googleUser.coinAlleyAvatars = existingUser.coinAlleyAvatars || [];
                         googleUser.mailbox = existingUser.mailbox || [];
                         googleUser.preferences = existingUser.preferences || googleUser.preferences;
                         googleUser.registrationDate = existingUser.registrationDate || googleUser.registrationDate;
                         googleUser.loginStreak = existingUser.loginStreak || 1;
                         googleUser.lastLoginDate = existingUser.lastLoginDate || new Date().toDateString();
                         googleUser.streakStartDate = existingUser.streakStartDate || new Date().toISOString();
+                        googleUser.lastDailyBonusClaim = existingUser.lastDailyBonusClaim;
                         
                         if (existingUser.avatar && existingUser.avatar !== userInfo.picture && !existingUser.avatar.includes('googleusercontent.com')) {
                             googleUser.avatar = existingUser.avatar; // Preserve custom avatar
@@ -3678,7 +4232,7 @@
 
             loadFromStorage() {
                 try {
-                    const usersJson = localStorage.getItem('gameDB_users_v6');
+                    const usersJson = localStorage.getItem('gameDB_users_v7');
                     if (usersJson) {
                         const usersArray = JSON.parse(usersJson);
                         usersArray.forEach(user => {
@@ -3687,11 +4241,14 @@
                             if (!user.totalCoinsEarned) user.totalCoinsEarned = 0;
                             if (!user.timeSpentMinutes) user.timeSpentMinutes = 0;
                             if (!user.shopAvatars) user.shopAvatars = [];
+                            if (!user.coinAlleyAvatars) user.coinAlleyAvatars = [];
                             if (!user.loginStreak) user.loginStreak = 0;
                             if (!user.lastLoginDate) user.lastLoginDate = null;
                             if (!user.streakStartDate) user.streakStartDate = null;
                             if (!user.loyalPlayerUnlocked) user.loyalPlayerUnlocked = false;
                             if (!user.legendaryUnlocked) user.legendaryUnlocked = false;
+                            if (!user.lastDailyBonusClaim) user.lastDailyBonusClaim = null;
+                            if (!user.gameDownloadCoins) user.gameDownloadCoins = {};
                             this.users.set(user.id, user);
                         });
                     }
@@ -3703,28 +4260,43 @@
             saveToStorage() {
                 try {
                     const usersArray = Array.from(this.users.values());
-                    localStorage.setItem('gameDB_users_v6', JSON.stringify(usersArray));
+                    localStorage.setItem('gameDB_users_v7', JSON.stringify(usersArray));
                 } catch (error) {
                     console.error("Error saving to localStorage:", error);
                 }
             }
 
             async trackGameDownload(gameType) {
-                if (!this.currentUser) return;
+                if (!this.currentUser) return false;
                 
                 if (!this.currentUser.downloadedGames) {
                     this.currentUser.downloadedGames = [];
                 }
                 
+                if (!this.currentUser.gameDownloadCoins) {
+                    this.currentUser.gameDownloadCoins = {};
+                }
+                
+                // Add game to downloaded list
                 if (!this.currentUser.downloadedGames.includes(gameType)) {
                     this.currentUser.downloadedGames.push(gameType);
-                    this.saveToStorage();
-                    
-                    // Check if user should unlock premium avatars
-                    if (this.currentUser.downloadedGames.length >= 2) {
-                        await this.unlockPremiumAvatars();
-                    }
                 }
+                
+                // Check if already got coins for this game
+                if (this.currentUser.gameDownloadCoins[gameType]) {
+                    return false; // Already got coins
+                }
+                
+                // Mark as received coins
+                this.currentUser.gameDownloadCoins[gameType] = true;
+                this.saveToStorage();
+                
+                // Check if user should unlock premium avatars
+                if (this.currentUser.downloadedGames.length >= 2) {
+                    await this.unlockPremiumAvatars();
+                }
+                
+                return true; // Can receive coins
             }
 
             async unlockPremiumAvatars() {
@@ -3779,6 +4351,7 @@
                 this.currentUser.totalCoinsEarned = (this.currentUser.totalCoinsEarned || 0) + amount;
                 this.saveToStorage();
                 updateCoinDisplay();
+                checkCoinAlleyRewards();
             }
 
             spendCoins(amount) {
@@ -3854,9 +4427,6 @@
         // Global variables
         let gameDB = null;
         let currentUser = null;
-        let downloadAttempts = 0;
-        const maxDownloads = 5;
-        const downloadCooldown = 30000;
         let isInitialized = false;
         let wasVisitedBefore = false;
         let selectedAvatar = standardAvatars[0];
@@ -3987,20 +4557,113 @@
                 
                 currentUser.lastLoginDate = today;
                 gameDB.saveUser(currentUser);
-                
-                // Show daily bonus popup
-                showDailyBonusPopup();
             }
         }
 
-        function showDailyBonusPopup() {
+        function openDailyLogin() {
+            if (!currentUser) {
+                showNotification(
+                    'Musisz się zalogować!',
+                    'You must login!',
+                    'error'
+                );
+                return;
+            }
+            
+            const modal = document.getElementById('dailyLoginModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                updateDailyLoginDisplay();
+                updateDailyTimer();
+            }
+        }
+
+        function closeDailyLogin() {
+            const modal = document.getElementById('dailyLoginModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function updateDailyLoginDisplay() {
             if (!currentUser) return;
+            
+            const container = document.querySelector('.daily-rewards-grid');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            const streak = currentUser.loginStreak || 1;
+            const canClaim = canClaimDailyBonus();
+            
+            dailyLoginRewards.forEach((reward, index) => {
+                const dayNum = index + 1;
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'daily-reward-day';
+                
+                if (dayNum < streak || (dayNum === streak && !canClaim)) {
+                    dayDiv.classList.add('completed');
+                } else if (dayNum === streak && canClaim) {
+                    dayDiv.classList.add('current');
+                } else {
+                    dayDiv.classList.add('future');
+                }
+                
+                dayDiv.innerHTML = `
+                    <div class="day-number">
+                        <span class="lang-pl">Dzień ${dayNum}</span>
+                        <span class="lang-en">Day ${dayNum}</span>
+                    </div>
+                    <div class="day-reward">${reward.coins}💰</div>
+                    ${reward.special ? `<div class="day-special">🏆</div>` : ''}
+                `;
+                
+                container.appendChild(dayDiv);
+            });
+            
+            // Update claim button
+            const claimBtn = document.querySelector('.claim-daily-btn');
+            if (claimBtn) {
+                claimBtn.disabled = !canClaim;
+                if (canClaim) {
+                    claimBtn.innerHTML = `
+                        <span class="lang-pl">Odbierz nagrodę</span>
+                        <span class="lang-en">Claim reward</span>
+                    `;
+                } else {
+                    claimBtn.innerHTML = `
+                        <span class="lang-pl">Już odebrano</span>
+                        <span class="lang-en">Already claimed</span>
+                    `;
+                }
+            }
+        }
+
+        function canClaimDailyBonus() {
+            if (!currentUser) return false;
+            
+            if (!currentUser.lastDailyBonusClaim) return true;
+            
+            const lastClaim = new Date(currentUser.lastDailyBonusClaim);
+            const now = new Date();
+            
+            // Check if it's a new day
+            return lastClaim.toDateString() !== now.toDateString();
+        }
+
+        function claimDailyBonus() {
+            if (!currentUser || !gameDB || !canClaimDailyBonus()) return;
             
             const streak = currentUser.loginStreak || 1;
             const reward = dailyLoginRewards[streak - 1] || dailyLoginRewards[0];
             
             // Give coins
             gameDB.addCoins(reward.coins);
+            
+            // Update last claim time
+            currentUser.lastDailyBonusClaim = new Date().toISOString();
             
             // Check for special reward (7-day streak)
             if (reward.special === 'loyalPlayerAvatar' && !currentUser.loyalPlayerUnlocked) {
@@ -4028,41 +4691,151 @@
                 checkLegendaryAvatar();
             }
             
-            // Create popup
-            const popup = document.createElement('div');
-            popup.className = 'daily-bonus-popup';
-            popup.innerHTML = `
-                <h3>
-                    <span class="lang-pl">📅 Codzienna nagroda!</span>
-                    <span class="lang-en">📅 Daily Bonus!</span>
-                </h3>
-                <div class="bonus-amount">+${reward.coins} 💰</div>
-                <div class="streak-info">
-                    <span class="lang-pl">Dzień ${streak}/7 • Seria: ${streak} ${streak === 1 ? 'dzień' : streak < 5 ? 'dni' : 'dni'}</span>
-                    <span class="lang-en">Day ${streak}/7 • Streak: ${streak} ${streak === 1 ? 'day' : 'days'}</span>
-                </div>
-                ${reward.special ? `
-                    <div style="margin: 20px 0; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
-                        <div class="lang-pl">🎉 GRATULACJE! Odblokowałeś specjalny avatar "Loyal Player"!</div>
-                        <div class="lang-en">🎉 CONGRATULATIONS! You unlocked special "Loyal Player" avatar!</div>
-                    </div>
-                ` : ''}
-                <div class="daily-bonus-calendar">
-                    ${dailyLoginRewards.map((r, i) => `
-                        <div class="daily-bonus-day ${i < streak ? 'completed' : i === streak - 1 ? 'current' : 'future'}">
-                            <div class="day-number">${i + 1}</div>
-                            <div class="day-reward">${r.coins}💰</div>
-                            ${r.special ? '<div style="font-size: 20px;">🏆</div>' : ''}
-                        </div>
-                    `).join('')}
-                </div>
-                <button class="close-btn" onclick="this.parentElement.remove()">
-                    <span class="lang-pl">Super!</span>
-                    <span class="lang-en">Awesome!</span>
-                </button>
-            `;
+            gameDB.saveUser(currentUser);
             
-            document.body.appendChild(popup);
+            showNotification(
+                `Otrzymałeś ${reward.coins} monet!`,
+                `You received ${reward.coins} coins!`,
+                'success'
+            );
+            
+            updateDailyLoginDisplay();
+            updateCoinDisplay();
+        }
+
+        function updateDailyTimer() {
+            const timerInterval = setInterval(() => {
+                if (!document.getElementById('dailyLoginModal') || document.getElementById('dailyLoginModal').style.display === 'none') {
+                    clearInterval(timerInterval);
+                    return;
+                }
+                
+                const now = new Date();
+                const tomorrow = new Date(now);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(0, 0, 0, 0);
+                
+                const timeUntilReset = tomorrow - now;
+                const hours = Math.floor(timeUntilReset / (1000 * 60 * 60));
+                const minutes = Math.floor((timeUntilReset % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeUntilReset % (1000 * 60)) / 1000);
+                
+                const timerDisplay = document.querySelector('.timer-display');
+                if (timerDisplay) {
+                    timerDisplay.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }, 1000);
+        }
+
+        // —— COIN ALLEY FUNCTIONS —— 
+        function openCoinAlley() {
+            if (!currentUser) {
+                showNotification(
+                    'Musisz się zalogować!',
+                    'You must login!',
+                    'error'
+                );
+                return;
+            }
+            
+            const modal = document.getElementById('coinAlleyModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                updateCoinAlleyDisplay();
+            }
+        }
+
+        function closeCoinAlley() {
+            const modal = document.getElementById('coinAlleyModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function updateCoinAlleyDisplay() {
+            if (!currentUser) return;
+            
+            const totalCoins = currentUser.totalCoinsEarned || 0;
+            const progressBar = document.querySelector('.coin-alley-progress-bar');
+            const progressText = document.querySelector('.coin-alley-progress-text');
+            const rewardsContainer = document.querySelector('.coin-alley-rewards');
+            
+            if (progressBar) {
+                const percentage = Math.min((totalCoins / 30000) * 100, 100);
+                progressBar.style.width = percentage + '%';
+            }
+            
+            if (progressText) {
+                progressText.textContent = `${totalCoins} / 30,000`;
+            }
+            
+            if (rewardsContainer) {
+                rewardsContainer.innerHTML = '';
+                
+                coinAlleyAvatars.forEach((avatar, index) => {
+                    const rewardDiv = document.createElement('div');
+                    rewardDiv.className = 'coin-alley-reward';
+                    
+                    const isUnlocked = totalCoins >= avatar.coins;
+                    const isNext = !isUnlocked && (index === 0 || totalCoins >= coinAlleyAvatars[index - 1].coins);
+                    
+                    if (isUnlocked) {
+                        rewardDiv.classList.add('unlocked');
+                    } else if (isNext) {
+                        rewardDiv.classList.add('next');
+                    }
+                    
+                    rewardDiv.innerHTML = `
+                        <div class="reward-coins">${avatar.coins}💰</div>
+                        <div class="reward-avatar">
+                            <img src="${avatar.url}" alt="${avatar.name}" style="${!isUnlocked ? 'filter: grayscale(1) brightness(0.5);' : ''}">
+                        </div>
+                        <div class="reward-status">
+                            ${isUnlocked ? '<span class="lang-pl">Odblokowano</span><span class="lang-en">Unlocked</span>' : 
+                              '<span class="lang-pl">Zablokowane</span><span class="lang-en">Locked</span>'}
+                        </div>
+                    `;
+                    
+                    rewardsContainer.appendChild(rewardDiv);
+                });
+            }
+        }
+
+        function checkCoinAlleyRewards() {
+            if (!currentUser || !gameDB) return;
+            
+            const totalCoins = currentUser.totalCoinsEarned || 0;
+            
+            coinAlleyAvatars.forEach((avatar) => {
+                if (totalCoins >= avatar.coins && !hasCoinAlleyAvatar(avatar.coins)) {
+                    // Unlock this avatar
+                    if (!currentUser.coinAlleyAvatars) {
+                        currentUser.coinAlleyAvatars = [];
+                    }
+                    
+                    currentUser.coinAlleyAvatars.push({
+                        coins: avatar.coins,
+                        name: avatar.name,
+                        url: avatar.url,
+                        unlockedDate: new Date().toISOString()
+                    });
+                    
+                    gameDB.saveUser(currentUser);
+                    
+                    showNotification(
+                        `Odblokowałeś avatar z Alei Monet: ${avatar.name}!`,
+                        `You unlocked Coin Alley avatar: ${avatar.name}!`,
+                        'success'
+                    );
+                }
+            });
+        }
+
+        function hasCoinAlleyAvatar(coins) {
+            if (!currentUser || !currentUser.coinAlleyAvatars) return false;
+            return currentUser.coinAlleyAvatars.some(avatar => avatar.coins === coins);
         }
 
         // —— COIN SYSTEM FUNCTIONS —— 
@@ -4098,8 +4871,20 @@
                 if (shopCoinsDisplay) {
                     shopCoinsDisplay.textContent = currentUser.coins || 0;
                 }
+                
+                // Show UI buttons
+                const dailyBtn = document.querySelector('.daily-login-btn');
+                const alleyBtn = document.querySelector('.coin-alley-btn');
+                if (dailyBtn) dailyBtn.classList.add('show');
+                if (alleyBtn) alleyBtn.classList.add('show');
             } else {
                 if (coinDisplay) coinDisplay.classList.remove('show');
+                
+                // Hide UI buttons
+                const dailyBtn = document.querySelector('.daily-login-btn');
+                const alleyBtn = document.querySelector('.coin-alley-btn');
+                if (dailyBtn) dailyBtn.classList.remove('show');
+                if (alleyBtn) alleyBtn.classList.remove('show');
             }
         }
 
@@ -4146,14 +4931,12 @@
                         <li class="lang-en">100 coins to start (welcome bonus)</li>
                         <li class="lang-pl">2 monety za każdą minutę na stronie</li>
                         <li class="lang-en">2 coins for every minute on site</li>
-                        <li class="lang-pl">50 monet za pobranie Labiryntu</li>
-                        <li class="lang-en">50 coins for downloading Maze</li>
-                        <li class="lang-pl">30 monet za pobranie Kółko i krzyżyk</li>
-                        <li class="lang-en">30 coins for downloading Tic-tac-toe</li>
+                        <li class="lang-pl">20 monet za pobranie każdej gry (jednorazowo)</li>
+                        <li class="lang-en">20 coins for downloading each game (once)</li>
                         <li class="lang-pl">10-150 monet dziennie za logowanie</li>
                         <li class="lang-en">10-150 coins daily for login</li>
-                        <li class="lang-pl">10-200 monet z kuli monet (co 60 minut)</li>
-                        <li class="lang-en">10-200 coins from coin ball (every 60 minutes)</li>
+                        <li class="lang-pl">10-200 monet z kuli monet (co godzinę)</li>
+                        <li class="lang-en">10-200 coins from coin ball (every hour)</li>
                     </ul>
                 </div>
             `;
@@ -4256,6 +5039,12 @@
                 
                 // Initialize coin ball system
                 coinBallSystem = new CoinBallSystem();
+                
+                // Create coin ball timer display
+                const timerDiv = document.createElement('div');
+                timerDiv.className = 'coin-ball-timer';
+                timerDiv.innerHTML = '<div class="coin-ball-timer-text"></div>';
+                document.body.appendChild(timerDiv);
                 
                 // Hide the loading spinner after initialization
                 hideLoading();
@@ -4423,6 +5212,13 @@
                         });
                     }
                     
+                    // Add coin alley avatars if user has any
+                    if (currentUser && currentUser.coinAlleyAvatars) {
+                        currentUser.coinAlleyAvatars.forEach(coinAlleyAvatar => {
+                            allAvatars.push(coinAlleyAvatar.url);
+                        });
+                    }
+                    
                     allAvatars.forEach((avatar, index) => {
                         const isPremium = index >= standardAvatars.length && index < standardAvatars.length + premiumAvatars.length;
                         const isVip = index === standardAvatars.length + premiumAvatars.length;
@@ -4430,6 +5226,7 @@
                         const isLoyalPlayer = currentUser?.loyalPlayerUnlocked && avatar === loyalPlayerAvatar.url;
                         const isLegendary = currentUser?.legendaryUnlocked && avatar === legendaryAvatar.url;
                         const isShopAvatar = currentUser?.shopAvatars?.some(sa => sa.url === avatar);
+                        const isCoinAlleyAvatar = currentUser?.coinAlleyAvatars?.some(ca => ca.url === avatar);
                         
                         const avatarDiv = document.createElement('div');
                         avatarDiv.className = 'avatar-option';
@@ -4479,6 +5276,12 @@
                             if (shopAvatarData) {
                                 badgeHtml = '<div class="shop-badge">SHOP</div>';
                                 altText = shopAvatarData.name;
+                            }
+                        } else if (isCoinAlleyAvatar) {
+                            const coinAlleyAvatarData = currentUser.coinAlleyAvatars.find(ca => ca.url === avatar);
+                            if (coinAlleyAvatarData) {
+                                badgeHtml = '<div class="shop-badge">ALLEY</div>';
+                                altText = coinAlleyAvatarData.name;
                             }
                         } else {
                             altText = 'Gaming Avatar ' + (index + 1);
@@ -4634,627 +5437,1233 @@
                 return;
             }
             
-            if (lastSeenVersion !== APP_VERSION) {
-                localStorage.setItem(LAST_VERSION_KEY, APP_VERSION);
-                
-                const updateOverlay = document.getElementById('updateOverlay');
-                if (updateOverlay) {
-                    updateOverlay.style.display = 'flex';
-                    console.log(`Update available: ${lastSeenVersion || 'none'} → ${APP_VERSION}`);
-                }
-            }
-        }
-
-        function updateApp() {
-            location.reload(true);
-        }
-
-        function openAuthModal() {
-            if (!isInitialized) {
-                if (!initializeSystem()) {
-                    showNotification(
-                        'System jest inicjalizowany, spróbuj ponownie za chwilę.',
-                        'System is being initialized, try again in a moment.',
-                        'info'
-                    );
-                    return;
-                }
-            }
-            
-            const authModal = document.getElementById('authModal');
-            if (authModal) {
-                authModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                initializeAvatarGrid();
-            }
-        }
-        
-        function closeAuthModal() {
-            const authModal = document.getElementById('authModal');
-            if (authModal) {
-                authModal.style.display = 'none';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function checkLoginStatus() {
-            const userSession = localStorage.getItem('currentUser');
-            
-            if (userSession) {
-                try {
-                    const session = JSON.parse(userSession);
+                if (lastSeenVersion !== APP_VERSION) {
+                    localStorage.setItem(LAST_VERSION_KEY, APP_VERSION);
                     
-                    // Check if 24h session is still valid
-                    if (session.stayLoggedIn && session.sessionExpiry) {
-                        const expiryDate = new Date(session.sessionExpiry);
-                        if (new Date() > expiryDate) {
-                            // Session expired
-                            localStorage.removeItem('currentUser');
+                    const updateOverlay = document.getElementById('updateOverlay');
+                    if (updateOverlay) {
+                        updateOverlay.style.display = 'flex';
+                        console.log(`Update available: ${lastSeenVersion || 'none'} → ${APP_VERSION}`);
+                    }
+                }
+            }
+
+            function updateApp() {
+                location.reload(true);
+            }
+
+            function openAuthModal() {
+                if (!isInitialized) {
+                    if (!initializeSystem()) {
+                        showNotification(
+                            'System jest inicjalizowany, spróbuj ponownie za chwilę.',
+                            'System is being initialized, try again in a moment.',
+                            'info'
+                        );
+                        return;
+                    }
+                }
+                
+                const authModal = document.getElementById('authModal');
+                if (authModal) {
+                    authModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    initializeAvatarGrid();
+                }
+            }
+            
+            function closeAuthModal() {
+                const authModal = document.getElementById('authModal');
+                if (authModal) {
+                    authModal.style.display = 'none';
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function checkLoginStatus() {
+                const userSession = localStorage.getItem('currentUser');
+                
+                if (userSession) {
+                    try {
+                        const session = JSON.parse(userSession);
+                        
+                        // Check if 24h session is still valid
+                        if (session.stayLoggedIn && session.sessionExpiry) {
+                            const expiryDate = new Date(session.sessionExpiry);
+                            if (new Date() > expiryDate) {
+                                // Session expired
+                                localStorage.removeItem('currentUser');
+                                updateUserInterface();
+                                return;
+                            }
+                        }
+                        
+                        // Find user in database
+                        const user = gameDB.users.get(session.id);
+                        if (user) {
+                            currentUser = user;
+                            gameDB.currentUser = user;
+                            gameDB.isGoogleUser = user.isGoogleUser || false;
+                            
+                            // Update login time
+                            currentUser.lastLogin = new Date().toISOString();
+                            currentUser.lastActiveTime = new Date().toISOString();
+                            gameDB.saveUser(currentUser);
+                            
                             updateUserInterface();
-                            return;
+                            startCoinTimer();
+                            checkDailyLoginBonus();
+                            checkLegendaryAvatar();
+                            
+                            console.log(`Auto-logged in as: ${currentUser.username}`);
+                        } else {
+                            localStorage.removeItem('currentUser');
+                        }
+                    } catch (error) {
+                        console.error("Error checking login status:", error);
+                        localStorage.removeItem('currentUser');
+                    }
+                }
+                
+                updateUserInterface();
+            }
+
+            function logout() {
+                currentUser = null;
+                gameDB.currentUser = null;
+                gameDB.isGoogleUser = false;
+                
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('userLastActivity');
+                
+                stopCoinTimer();
+                updateUserInterface();
+                
+                showNotification(
+                    'Wylogowano pomyślnie',
+                    'Logged out successfully',
+                    'info'
+                );
+            }
+            
+            function updateUserInterface() {
+                const loginButton = document.getElementById('loginButton');
+                const userInfo = document.getElementById('userInfo');
+                const usernameDisplay = document.getElementById('usernameDisplay');
+                const shopBtn = document.querySelector('.shop-btn');
+                const dailyLoginBtn = document.querySelector('.daily-login-btn');
+                const coinAlleyBtn = document.querySelector('.coin-alley-btn');
+                
+                if (currentUser) {
+                    if (loginButton) loginButton.style.display = 'none';
+                    if (userInfo) userInfo.style.display = 'block';
+                    if (usernameDisplay) usernameDisplay.textContent = currentUser.username;
+                    if (shopBtn) shopBtn.classList.add('show');
+                    if (dailyLoginBtn) dailyLoginBtn.classList.add('show');
+                    if (coinAlleyBtn) coinAlleyBtn.classList.add('show');
+                    
+                    const userAvatar = document.querySelector('.user-avatar');
+                    if (userAvatar) {
+                        userAvatar.innerHTML = `<img src="${currentUser.avatar}" alt="User Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                    }
+                    
+                    const userStatus = document.getElementById('userStatus');
+                    if (userStatus) {
+                        if (currentUser.legendaryUnlocked) {
+                            userStatus.innerHTML = '<span class="legendary-user-badge">🌈 LEGENDARY</span>';
+                        } else if (currentUser.ultraVipUnlocked) {
+                            userStatus.innerHTML = '<span class="ultra-vip-user-badge">💎 ULTRA VIP</span>';
+                        } else if (currentUser.vipUnlocked) {
+                            userStatus.innerHTML = '<span class="vip-user-badge">👑 VIP</span>';
+                        } else if (currentUser.premiumAvatarsUnlocked) {
+                            userStatus.innerHTML = '<span class="premium-user-badge">⭐ PREMIUM</span>';
                         }
                     }
                     
-                    // Find user in database
-                    const user = gameDB.users.get(session.id);
-                    if (user) {
-                        currentUser = user;
-                        gameDB.currentUser = user;
-                        gameDB.isGoogleUser = user.isGoogleUser || false;
-                        
-                        // Update login time
-                        currentUser.lastLogin = new Date().toISOString();
-                        currentUser.lastActiveTime = new Date().toISOString();
-                        gameDB.saveUser(currentUser);
-                        
-                        updateUserInterface();
-                        startCoinTimer();
-                        checkDailyLoginBonus();
-                        checkLegendaryAvatar();
-                        
-                        console.log(`Auto-logged in as: ${currentUser.username}`);
-                    } else {
-                        localStorage.removeItem('currentUser');
-                    }
-                } catch (error) {
-                    console.error("Error checking login status:", error);
-                    localStorage.removeItem('currentUser');
+                    updateCoinDisplay();
+                    updateMailboxNotification();
+                } else {
+                    if (loginButton) loginButton.style.display = 'block';
+                    if (userInfo) userInfo.style.display = 'none';
+                    if (shopBtn) shopBtn.classList.remove('show');
+                    if (dailyLoginBtn) dailyLoginBtn.classList.remove('show');
+                    if (coinAlleyBtn) coinAlleyBtn.classList.remove('show');
+                    updateCoinDisplay();
                 }
             }
-            
-            updateUserInterface();
-        }
 
-        function logout() {
-            currentUser = null;
-            gameDB.currentUser = null;
-            gameDB.isGoogleUser = false;
-            
-            localStorage.removeItem('currentUser');
-            localStorage.removeItem('userLastActivity');
-            
-            stopCoinTimer();
-            updateUserInterface();
-            
-            showNotification(
-                'Wylogowano pomyślnie',
-                'Logged out successfully',
-                'info'
-            );
-        }
-        
-        function updateUserInterface() {
-            const loginButton = document.getElementById('loginButton');
-            const userInfo = document.getElementById('userInfo');
-            const usernameDisplay = document.getElementById('usernameDisplay');
-            const shopBtn = document.querySelector('.shop-btn');
-            
-            if (currentUser) {
-                if (loginButton) loginButton.style.display = 'none';
-                if (userInfo) userInfo.style.display = 'block';
-                if (usernameDisplay) usernameDisplay.textContent = currentUser.username;
-                if (shopBtn) shopBtn.classList.add('show');
+            // User preferences functions
+            function updateUserPreference(key, value) {
+                if (!currentUser || !gameDB) return;
                 
-                const userAvatar = document.querySelector('.user-avatar');
-                if (userAvatar) {
-                    userAvatar.innerHTML = `<img src="${currentUser.avatar}" alt="User Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                if (!currentUser.preferences) {
+                    currentUser.preferences = {};
                 }
                 
-                const userStatus = document.getElementById('userStatus');
-                if (userStatus) {
-                    if (currentUser.ultraVipUnlocked) {
-                        userStatus.innerHTML = '<span class="ultra-vip-user-badge">💎 ULTRA VIP</span>';
-                    } else if (currentUser.vipUnlocked) {
-                        userStatus.innerHTML = '<span class="vip-user-badge">👑 VIP</span>';
-                    } else if (currentUser.premiumAvatarsUnlocked) {
-                        userStatus.innerHTML = '<span class="premium-user-badge">⭐ PREMIUM</span>';
-                    } else if (currentUser.legendaryUnlocked) {
-                        userStatus.innerHTML = '<span class="legendary-user-badge">🌈 LEGENDARY</span>';
-                    }
+                currentUser.preferences[key] = value;
+                gameDB.saveUser(currentUser);
+                
+                applyUserPreferences();
+            }
+
+            function applyUserPreferences() {
+                if (!currentUser || !currentUser.preferences) return;
+                
+                if (currentUser.preferences.fontSize) {
+                    document.body.className = document.body.className.replace(/font-\w+/g, '');
+                    document.body.classList.add(`font-${currentUser.preferences.fontSize}`);
                 }
                 
-                updateCoinDisplay();
-                updateMailboxNotification();
-            } else {
-                if (loginButton) loginButton.style.display = 'block';
-                if (userInfo) userInfo.style.display = 'none';
-                if (shopBtn) shopBtn.classList.remove('show');
-                updateCoinDisplay();
-            }
-        }
-
-        // User preferences functions
-        function updateUserPreference(key, value) {
-            if (!currentUser || !gameDB) return;
-            
-            if (!currentUser.preferences) {
-                currentUser.preferences = {};
-            }
-            
-            currentUser.preferences[key] = value;
-            gameDB.saveUser(currentUser);
-            
-            applyUserPreferences();
-        }
-
-        function applyUserPreferences() {
-            if (!currentUser || !currentUser.preferences) return;
-            
-            if (currentUser.preferences.fontSize) {
-                document.body.className = document.body.className.replace(/font-\w+/g, '');
-                document.body.classList.add(`font-${currentUser.preferences.fontSize}`);
-            }
-            
-            if (currentUser.preferences.highContrast) {
-                document.body.classList.add('high-contrast');
-            } else {
-                document.body.classList.remove('high-contrast');
-            }
-        }
-
-        function changeFontSize(size) {
-            if (!['small', 'medium', 'large'].includes(size)) return;
-            
-            document.querySelectorAll('.font-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            const fontBtn = document.getElementById(`font${size.charAt(0).toUpperCase() + size.slice(1)}`);
-            if (fontBtn) fontBtn.classList.add('active');
-            
-            updateUserPreference('fontSize', size);
-        }
-
-        // Delete account functions
-        function showDeleteConfirmation() {
-            const captchaChallenge = document.getElementById('captchaChallenge');
-            const captchaCode = document.getElementById('captchaCode');
-            const captchaInput = document.getElementById('captchaInput');
-            
-            if (captchaChallenge && captchaCode && captchaInput) {
-                const code = Math.random().toString(36).substring(2, 8).toUpperCase();
-                captchaCode.textContent = code;
-                captchaInput.value = '';
-                captchaChallenge.style.display = 'block';
-            }
-        }
-
-        function hideCaptchaChallenge() {
-            const captchaChallenge = document.getElementById('captchaChallenge');
-            if (captchaChallenge) {
-                captchaChallenge.style.display = 'none';
-            }
-        }
-
-        function confirmDeleteAccount() {
-            const captchaCode = document.getElementById('captchaCode');
-            const captchaInput = document.getElementById('captchaInput');
-            
-            if (!captchaCode || !captchaInput) return;
-            
-            if (captchaInput.value.toUpperCase() !== captchaCode.textContent) {
-                showNotification(
-                    'Nieprawidłowy kod CAPTCHA!',
-                    'Invalid CAPTCHA code!',
-                    'error'
-                );
-                return;
-            }
-            
-            if (!currentUser || !gameDB) return;
-            
-            gameDB.users.delete(currentUser.id);
-            gameDB.saveToStorage();
-            
-            logout();
-            closeSettings();
-            
-            showNotification(
-                'Konto zostało usunięte.',
-                'Account has been deleted.',
-                'info'
-            );
-        }
-
-        // —— DOWNLOAD SYSTEM —— 
-        function checkDownload(event, gameType) {
-            event.preventDefault();
-            
-            if (!currentUser) {
-                showNotification(
-                    'Musisz się zalogować aby pobrać grę!',
-                    'You must login to download the game!',
-                    'error'
-                );
-                openAuthModal();
-                return false;
-            }
-            
-            if (downloadAttempts >= maxDownloads) {
-                showNotification(
-                    'Osiągnięto limit pobierań. Spróbuj ponownie później.',
-                    'Download limit reached. Try again later.',
-                    'error'
-                );
-                return false;
-            }
-            
-            downloadAttempts++;
-            
-            gameDB.trackGameDownload(gameType);
-            
-            const link = event.target;
-            const actualLink = document.createElement('a');
-            actualLink.href = link.href;
-            actualLink.download = link.download;
-            actualLink.click();
-            
-            showNotification(
-                'Pobieranie rozpoczęte!',
-                'Download started!',
-                'success'
-            );
-            
-            if (gameType === 'maze') {
-                gameDB.addCoins(50);
-                showNotification(
-                    'Otrzymałeś 50 monet za pobranie Labiryntu!',
-                    'You received 50 coins for downloading Maze!',
-                    'success'
-                );
-            } else if (gameType === 'tictactoe') {
-                gameDB.addCoins(30);
-                showNotification(
-                    'Otrzymałeś 30 monet za pobranie Kółko i krzyżyk!',
-                    'You received 30 coins for downloading Tic-tac-toe!',
-                    'success'
-                );
-            }
-            
-            setTimeout(() => {
-                downloadAttempts = Math.max(0, downloadAttempts - 1);
-            }, downloadCooldown);
-            
-            return false;
-        }
-
-        // —— AI CHATBOT FUNCTIONS —— 
-        function toggleChatbot() {
-            const container = document.getElementById('chatbotContainer');
-            const toggle = document.querySelector('.chatbot-toggle');
-            
-            if (container.style.display === 'none' || !container.style.display) {
-                container.style.display = 'flex';
-                toggle.style.transform = 'scale(0.9)';
-                loadChatbotContent();
-            } else {
-                container.style.display = 'none';
-                toggle.style.transform = 'scale(1)';
-            }
-        }
-
-        function closeChatbot() {
-            const container = document.getElementById('chatbotContainer');
-            const toggle = document.querySelector('.chatbot-toggle');
-            if (container) {
-                container.style.display = 'none';
-            }
-            if (toggle) {
-                toggle.style.transform = 'scale(1)';
-            }
-        }
-
-        function loadChatbotContent() {
-            const messagesContainer = document.getElementById('chatbotMessages');
-            if (!messagesContainer) return;
-            
-            const currentLang = document.documentElement.lang;
-            
-            if (!currentUser) {
-                messagesContainer.innerHTML = `
-                    <div class="ai-login-required">
-                        <h3 class="lang-pl">🔒 Zaloguj się aby korzystać z AI</h3>
-                        <h3 class="lang-en">🔒 Login to use AI assistant</h3>
-                        <p class="lang-pl">Asystent AI jest dostępny tylko dla zalogowanych użytkowników.</p>
-                        <p class="lang-en">AI assistant is available only for logged-in users.</p>
-                        <button class="auth-btn" onclick="openAuthModal(); closeChatbot();">
-                            <span class="lang-pl">Zaloguj się</span>
-                            <span class="lang-en">Login</span>
-                        </button>
-                    </div>
-                `;
-            } else {
-                messagesContainer.innerHTML = `
-                    <div class="chatbot-welcome">
-                        <h3 class="lang-pl">Cześć ${currentUser.username}! 👋</h3>
-                        <h3 class="lang-en">Hello ${currentUser.username}! 👋</h3>
-                        <p class="lang-pl">Jestem Twoim asystentem AI. Wybierz pytanie z listy lub zapytaj o cokolwiek!</p>
-                        <p class="lang-en">I'm your AI assistant. Choose a question from the list or ask anything!</p>
-                    </div>
-                    <div class="chatbot-questions">
-                        <button class="question-btn lang-pl" onclick="askQuestion('how-to-download')">📥 Jak pobrać gry?</button>
-                        <button class="question-btn lang-en" onclick="askQuestion('how-to-download')">📥 How to download games?</button>
-                        
-                        <button class="question-btn lang-pl" onclick="askQuestion('coin-system')">💰 Jak działa system monet?</button>
-                        <button class="question-btn lang-en" onclick="askQuestion('coin-system')">💰 How does the coin system work?</button>
-                        
-                        <button class="question-btn lang-pl" onclick="askQuestion('shop-avatars')">🛍️ Co mogę kupić w sklepie?</button>
-                        <button class="question-btn lang-en" onclick="askQuestion('shop-avatars')">🛍️ What can I buy in the shop?</button>
-                        
-                        <button class="question-btn lang-pl" onclick="askQuestion('coin-ball')">🎱 Jak działa kula monet?</button>
-                        <button class="question-btn lang-en" onclick="askQuestion('coin-ball')">🎱 How does coin ball work?</button>
-                        
-                        <button class="question-btn lang-pl" onclick="askQuestion('legendary-avatar')">🌈 Jak zdobyć Legendarny Avatar?</button>
-                        <button class="question-btn lang-en" onclick="askQuestion('legendary-avatar')">🌈 How to get Legendary Avatar?</button>
-                    </div>
-                `;
-            }
-        }
-
-        // AI responses
-        const aiResponses = {
-            'how-to-download': {
-                pl: `<strong>🤖 Jak pobrać gry - instrukcja krok po kroku</strong><br><br>
-                    1. <strong>Zaloguj się przez Google</strong> (obowiązkowe!)<br>
-                    2. Kliknij przycisk "Pobierz grę" przy wybranej grze<br>
-                    3. Plik ZIP zostanie pobrany na Twój komputer<br>
-                    4. Znajdź pobrany plik (zwykle w folderze "Pobrane")<br>
-                    5. Kliknij prawym przyciskiem na plik ZIP<br>
-                    6. Wybierz "Wypakuj wszystko" lub "Rozpakuj tutaj"<br>
-                    7. Otwórz rozpakowany folder<br>
-                    8. Uruchom plik .exe (np. maze.exe lub kolko.exe)<br><br>
-                    
-                    <strong>💰 BONUS:</strong> Otrzymasz monety za każde pobieranie!<br>
-                    • Labirynt = 50 monet<br>
-                    • Kółko i krzyżyk = 30 monet`,
+                if (currentUser.preferences.highContrast) {
+                    document.body.classList.add('high-contrast');
+                } else {
+                    document.body.classList.remove('high-contrast');
+                }
                 
-                en: `<strong>🤖 How to download games - step by step</strong><br><br>
-                    1. <strong>Sign in with Google</strong> (required!)<br>
-                    2. Click "Download game" button for chosen game<br>
-                    3. ZIP file will be downloaded to your computer<br>
-                    4. Find downloaded file (usually in "Downloads" folder)<br>
-                    5. Right-click on ZIP file<br>
-                    6. Choose "Extract all" or "Extract here"<br>
-                    7. Open extracted folder<br>
-                    8. Run .exe file (e.g. maze.exe or kolko.exe)<br><br>
-                    
-                    <strong>💰 BONUS:</strong> You'll receive coins for each download!<br>
-                    • Maze = 50 coins<br>
-                    • Tic-tac-toe = 30 coins`
-            },
-            
-            'coin-system': {
-                pl: `<strong>🤖 System monet - wszystko co musisz wiedzieć</strong><br><br>
-                    <strong>💰 Jak zdobywać monety:</strong><br>
-                    • 100 monet na start (bonus powitalny)<br>
-                    • 2 monety za każdą minutę na stronie<br>
-                    • 50 monet za pobranie Labiryntu<br>
-                    • 30 monet za pobranie Kółko i krzyżyk<br>
-                    • 10-150 monet dziennie za logowanie<br>
-                    • 10-200 monet z kuli monet (co 60 minut)<br><br>
-                    
-                    <strong>🛍️ Na co wydać monety:</strong><br>
-                    • 20 ekskluzywnych avatarów w sklepie<br>
-                    • Ceny: od 50 do 1300 monet<br>
-                    • Rzadkości: Common, Rare, Epic, Legendary<br><br>
-                    
-                    <em>💡 Wskazówka: Zostaw stronę otwartą, aby zdobywać monety automatycznie!</em>`,
-                
-                en: `<strong>🤖 Coin system - everything you need to know</strong><br><br>
-                    <strong>💰 How to earn coins:</strong><br>
-                    • 100 coins to start (welcome bonus)<br>
-                    • 2 coins for every minute on site<br>
-                    • 50 coins for downloading Maze<br>
-                    • 30 coins for downloading Tic-tac-toe<br>
-                    • 10-150 coins daily for login<br>
-                    • 10-200 coins from coin ball (every 60 minutes)<br><br>
-                    
-                    <strong>🛍️ What to spend coins on:</strong><br>
-                    • 20 exclusive avatars in shop<br>
-                    • Prices: from 50 to 1300 coins<br>
-                    • Rarities: Common, Rare, Epic, Legendary<br><br>
-                    
-                    <em>💡 Tip: Keep the page open to earn coins automatically!</em>`
-            },
-            
-            'shop-avatars': {
-                pl: `<strong>🤖 Sklep z avatarami - pełna lista</strong><br><br>
-                    <strong>🟢 Common (50-125 monet):</strong><br>
-                    • 🌟 Star Guardian - 50 monet<br>
-                    • 🔥 Fire Elemental - 75 monet<br>
-                    • ❄️ Ice Walker - 100 monet<br>
-                    • 🌺 Nature Spirit - 125 monet<br><br>
-                    
-                    <strong>🔵 Rare (150-300 monet):</strong><br>
-                    • ⚡ Thunder Lord - 150 monet<br>
-                    • 🌙 Moon Dancer - 200 monet<br>
-                    • ☀️ Sun Warrior - 250 monet<br>
-                    • 🌊 Ocean Master - 300 monet<br><br>
-                    
-                    <strong>🟣 Epic (350-500 monet):</strong><br>
-                    • 🌸 Sakura Samurai - 350 monet<br>
-                    • 🎭 Shadow Assassin - 400 monet<br>
-                    • 🦅 Sky Emperor - 450 monet<br>
-                    • 🐺 Wolf Spirit - 500 monet<br><br>
-                    
-                    <strong>🟠 Legendary (600-1300 monet):</strong><br>
-                    • 💀 Death Knight - 600 monet<br>
-                    • 🌈 Rainbow Mage - 700 monet<br>
-                    • ⚔️ Blade Master - 800 monet<br>
-                    • 🏹 Archer Queen - 900 monet<br>
-                    • 🔮 Crystal Sage - 1000 monet<br>
-                    • 🌌 Void Walker - 1100 monet<br>
-                    • 🐲 Dragon Emperor - 1200 monet<br>
-                    • 👑 Ultra VIP Shop - 1300 monet<br><br>
-                    
-                    <em>💡 Kupione avatary są Twoje na zawsze!</em>`,
-                
-                en: `<strong>🤖 Avatar shop - full list</strong><br><br>
-                    <strong>🟢 Common (50-125 coins):</strong><br>
-                    • 🌟 Star Guardian - 50 coins<br>
-                    • 🔥 Fire Elemental - 75 coins<br>
-                    • ❄️ Ice Walker - 100 coins<br>
-                    • 🌺 Nature Spirit - 125 coins<br><br>
-                    
-                    <strong>🔵 Rare (150-300 coins):</strong><br>
-                    • ⚡ Thunder Lord - 150 coins<br>
-                    • 🌙 Moon Dancer - 200 coins<br>
-                    • ☀️ Sun Warrior - 250 coins<br>
-                    • 🌊 Ocean Master - 300 coins<br><br>
-                    
-                    <strong>🟣 Epic (350-500 coins):</strong><br>
-                    • 🌸 Sakura Samurai - 350 coins<br>
-                    • 🎭 Shadow Assassin - 400 coins<br>
-                    • 🦅 Sky Emperor - 450 coins<br>
-                    • 🐺 Wolf Spirit - 500 coins<br><br>
-                    
-                    <strong>🟠 Legendary (600-1300 coins):</strong><br>
-                    • 💀 Death Knight - 600 coins<br>
-                    • 🌈 Rainbow Mage - 700 coins<br>
-                    • ⚔️ Blade Master - 800 coins<br>
-                    • 🏹 Archer Queen - 900 coins<br>
-                    • 🔮 Crystal Sage - 1000 coins<br>
-                    • 🌌 Void Walker - 1100 coins<br>
-                    • 🐲 Dragon Emperor - 1200 coins<br>
-                    • 👑 Ultra VIP Shop - 1300 coins<br><br>
-                    
-                    <em>💡 Purchased avatars are yours forever!</em>`
-            },
-            
-            'coin-ball': {
-                pl: `<strong>🤖 Kula monet - specjalne wydarzenie!</strong><br><br>
-                    <strong>🎱 Jak to działa:</strong><br>
-                    • Co 60 minut pojawia się złota kula<br>
-                    • Kula odbija się po ekranie<br>
-                    • Musisz ją kliknąć zanim zniknie<br>
-                    • Wydarzenie trwa 2 minuty<br><br>
-                    
-                    <strong>💰 Możliwe nagrody:</strong><br>
-                    • 10 monet - 80% szans<br>
-                    • 20 monet - 60% szans<br>
-                    • 50 monet - 30% szans<br>
-                    • 200 monet - 3.8% szans (JACKPOT!)<br><br>
-                    
-                    <strong>⏰ Ważne:</strong><br>
-                    • Wydarzenie odbywa się zawsze<br>
-                    • Nawet gdy strona jest wyłączona<br>
-                    • Powiadomienie pojawi się na górze<br>
-                    • Kula jest trudna do złapania!<br><br>
-                    
-                    <em>💡 Bądź czujny i łap kulę monet!</em>`,
-                
-                en: `<strong>🤖 Coin ball - special event!</strong><br><br>
-                    <strong>🎱 How it works:</strong><br>
-                    • Golden ball appears every 60 minutes<br>
-                    • Ball bounces around the screen<br>
-                    • You must click it before it disappears<br>
-                    • Event lasts 2 minutes<br><br>
-                    
-                    <strong>💰 Possible rewards:</strong><br>
-                    • 10 coins - 80% chance<br>
-                    • 20 coins - 60% chance<br>
-                    • 50 coins - 30% chance<br>
-                    • 200 coins - 3.8% chance (JACKPOT!)<br><br>
-                    
-                    <strong>⏰ Important:</strong><br>
-                    • Event happens always<br>
-                    • Even when page is closed<br>
-                    • Notification will appear on top<br>
-                    • Ball is hard to catch!<br><br>
-                    
-                    <em>💡 Stay alert and catch the coin ball!</em>`
-            },
-            
-            'legendary-avatar': {
-                pl: `<strong>🤖 Legendarny Avatar - najwyższe osiągnięcie!</strong><br><br>
-                    <strong>🌈 Jak zdobyć Legendarny Avatar:</strong><br><br>
-                    Musisz odblokować WSZYSTKIE avatary:<br>
-                    ✅ 8 standardowych (darmowe)<br>
-                    ✅ 5 Premium (pobierz obie gry)<br>
-                    ✅ VIP (prezent powitalny)<br>
-                    ✅ Ultra VIP (ukończ Labirynt lub 1300 monet)<br>
-                    ✅ Loyal Player (7-dniowa seria)<br>
-                    ✅ 20 ze sklepu (50-1300 monet każdy)<br><br>
-                    
-                    <strong>💎 Co otrzymasz:</strong><br>
-                    • Ekskluzywny tęczowy avatar<br>
-                    • Status LEGENDY społeczności<br>
-                    • Specjalne efekty świetlne<br>
-                    • Uznanie wszystkich graczy<br><br>
-                    
-                    <strong>📊 Twój postęp:</strong><br>
-                    Sprawdzaj swoje avatary w ustawieniach!<br><br>
-                    
-                    <em>🏆 Tylko najlepsi mogą to osiągnąć!</em>`,
-                
-                en: `<strong>🤖 Legendary Avatar - highest achievement!</strong><br><br>
-                    <strong>🌈 How to get Legendary Avatar:</strong><br><br>
-                    You must unlock ALL avatars:<br>
-                    ✅ 8 standard (free)<br>
-                    ✅ 5 Premium (download both games)<br>
-                    ✅ VIP (welcome gift)<br>
-                    ✅ Ultra VIP (complete Maze or 1300 coins)<br>
-                    ✅ Loyal Player (7-day streak)<br>
-                    ✅ 20 from shop (50-1300 coins each)<br><br>
-                    
-                    <strong>💎 What you'll get:</strong><br>
-                    • Exclusive rainbow avatar<br>
-                    • Community LEGEND status<br>
-                    • Special light effects<br>
-                    • Recognition from all players<br><br>
-                    
-                    <strong>📊 Your progress:</strong><br>
-                    Check your avatars in settings!<br><br>
-                    
-                    <em>🏆 Only the best can achieve this!</em>`
+                if (currentUser.preferences.theme) {
+                    document.body.className = document.body.className.replace(/theme-\w+/g, '');
+                    document.body.classList.add(`theme-${currentUser.preferences.theme}`);
+                }
             }
-        };
 
-        function askQuestion(questionType) {
-            if (!isInitialized) {
-                if (!initializeSystem()) {
+            function changeFontSize(size) {
+                if (!['small', 'medium', 'large'].includes(size)) return;
+                
+                document.querySelectorAll('.font-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                const fontBtn = document.getElementById(`font${size.charAt(0).toUpperCase() + size.slice(1)}`);
+                if (fontBtn) fontBtn.classList.add('active');
+                
+                updateUserPreference('fontSize', size);
+            }
+
+            function changeTheme(theme) {
+                if (!['dark', 'blue', 'green'].includes(theme)) return;
+                
+                document.querySelectorAll('.color-option').forEach(option => {
+                    option.classList.remove('active');
+                });
+                const themeOption = document.querySelector(`.color-option[data-theme="${theme}"]`);
+                if (themeOption) themeOption.classList.add('active');
+                
+                updateUserPreference('theme', theme);
+            }
+
+            // Delete account functions
+            function showDeleteConfirmation() {
+                const captchaChallenge = document.getElementById('captchaChallenge');
+                const captchaCode = document.getElementById('captchaCode');
+                const captchaInput = document.getElementById('captchaInput');
+                
+                if (captchaChallenge && captchaCode && captchaInput) {
+                    const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+                    captchaCode.textContent = code;
+                    captchaInput.value = '';
+                    captchaChallenge.style.display = 'block';
+                }
+            }
+
+            function hideCaptchaChallenge() {
+                const captchaChallenge = document.getElementById('captchaChallenge');
+                if (captchaChallenge) {
+                    captchaChallenge.style.display = 'none';
+                }
+            }
+
+            function confirmDeleteAccount() {
+                const captchaCode = document.getElementById('captchaCode');
+                const captchaInput = document.getElementById('captchaInput');
+                
+                if (!captchaCode || !captchaInput) return;
+                
+                if (captchaInput.value.toUpperCase() !== captchaCode.textContent) {
                     showNotification(
-                        'System jest inicjalizowany, spróbuj ponownie za chwilę.',
-                        'System is being initialized, try again in a moment.',
-                        'info'
+                        'Nieprawidłowy kod CAPTCHA!',
+                        'Invalid CAPTCHA code!',
+                        'error'
                     );
                     return;
                 }
+                
+                if (!currentUser || !gameDB) return;
+                
+                gameDB.users.delete(currentUser.id);
+                gameDB.saveToStorage();
+                
+                logout();
+                closeSettings();
+                
+                showNotification(
+                    'Konto zostało usunięte.',
+                    'Account has been deleted.',
+                    'info'
+                );
             }
 
-            if (!currentUser) {
-                const currentLang = document.documentElement.lang;
-                const message = currentLang === 'pl' ? 
-                    'Musisz się zalogować aby korzystać z AI!' : 
-                    'You must login to use AI assistant!';
-                showNotification(message, message, 'error');
-                return;
+            // —— DOWNLOAD SYSTEM —— 
+            function checkDownload(event, gameType) {
+                event.preventDefault();
+                
+                if (!currentUser) {
+                    showNotification(
+                        'Musisz się zalogować aby pobrać grę!',
+                        'You must login to download the game!',
+                        'error'
+                    );
+                    openAuthModal();
+                    return false;
+                }
+                
+                const canGetCoins = gameDB.trackGameDownload(gameType);
+                
+                const link = event.target;
+                const actualLink = document.createElement('a');
+                actualLink.href = link.href;
+                actualLink.download = link.download;
+                actualLink.click();
+                
+                showNotification(
+                    'Pobieranie rozpoczęte!',
+                    'Download started!',
+                    'success'
+                );
+                
+                // Give coins only once per game
+                if (canGetCoins) {
+                    if (gameType === 'maze') {
+                        gameDB.addCoins(20);
+                        showNotification(
+                            'Otrzymałeś 20 monet za pobranie Labiryntu!',
+                            'You received 20 coins for downloading Maze!',
+                            'success'
+                        );
+                    } else if (gameType === 'tictactoe') {
+                        gameDB.addCoins(20);
+                        showNotification(
+                            'Otrzymałeś 20 monet za pobranie Kółko i krzyżyk!',
+                            'You received 20 coins for downloading Tic-tac-toe!',
+                            'success'
+                        );
+                    }
+                }
+                
+                return false;
             }
-            
-            const messagesContainer = document.getElementById('chatbotMessages');
-            if (!messagesContainer) return;
-            
-            const currentLang = document.documentElement.lang;
-            
+
+            // —— AI CHATBOT FUNCTIONS —— 
+            function toggleChatbot() {
+                const container = document.getElementById('chatbotContainer');
+                const toggle = document.querySelector('.chatbot-toggle');
+                
+                if (container.style.display === 'none' || !container.style.display) {
+                    container.style.display = 'flex';
+                    toggle.style.transform = 'scale(0.9)';
+                    loadChatbotContent();
+                } else {
+                    container.style.display = 'none';
+                    toggle.style.transform = 'scale(1)';
+                }
+            }
+
+            function closeChatbot() {
+                const container = document.getElementById('chatbotContainer');
+                const toggle = document.querySelector('.chatbot-toggle');
+                if (container) {
+                    container.style.display = 'none';
+                }
+                if (toggle) {
+                    toggle.style.transform = 'scale(1)';
+                }
+            }
+
+            function loadChatbotContent() {
+                const messagesContainer = document.getElementById('chatbotMessages');
+                if (!messagesContainer) return;
+                
+                const currentLang = document.documentElement.lang;
+                
+                if (!currentUser) {
+                    messagesContainer.innerHTML = `
+                        <div class="ai-login-required">
+                            <h3 class="lang-pl">🔒 Zaloguj się aby korzystać z AI</h3>
+                            <h3 class="lang-en">🔒 Login to use AI assistant</h3>
+                            <p class="lang-pl">Asystent AI jest dostępny tylko dla zalogowanych użytkowników.</p>
+                            <p class="lang-en">AI assistant is available only for logged-in users.</p>
+                            <button class="auth-btn" onclick="openAuthModal(); closeChatbot();">
+                                <span class="lang-pl">Zaloguj się</span>
+                                <span class="lang-en">Login</span>
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    messagesContainer.innerHTML = `
+                        <div class="chatbot-welcome">
+                            <h3 class="lang-pl">Cześć ${currentUser.username}! 👋</h3>
+                            <h3 class="lang-en">Hello ${currentUser.username}! 👋</h3>
+                            <p class="lang-pl">Jestem Twoim asystentem AI. Wybierz pytanie z listy lub zapytaj o cokolwiek!</p>
+                            <p class="lang-en">I'm your AI assistant. Choose a question from the list or ask anything!</p>
+                        </div>
+                        <div class="chatbot-questions">
+                            <button class="question-btn lang-pl" onclick="askQuestion('how-to-download')">📥 Jak pobrać gry?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('how-to-download')">📥 How to download games?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('coin-system')">💰 Jak działa system monet?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('coin-system')">💰 How does the coin system work?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('shop-avatars')">🛍️ Co mogę kupić w sklepie?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('shop-avatars')">🛍️ What can I buy in the shop?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('coin-ball')">🎱 Jak działa kula monet?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('coin-ball')">🎱 How does coin ball work?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('legendary-avatar')">🌈 Jak zdobyć Legendarny Avatar?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('legendary-avatar')">🌈 How to get Legendary Avatar?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('daily-rewards')">📅 Jak działają codzienne nagrody?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('daily-rewards')">📅 How do daily rewards work?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('coin-alley')">🏆 Co to jest aleja monet?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('coin-alley')">🏆 What is coin alley?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('premium-avatars')">⭐ Jak odblokować Premium avatary?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('premium-avatars')">⭐ How to unlock Premium avatars?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('vip-avatar')">👑 Jak zdobyć VIP Avatar?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('vip-avatar')">👑 How to get VIP Avatar?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('ultra-vip')">💎 Jak zdobyć Ultra VIP?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('ultra-vip')">💎 How to get Ultra VIP?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('account-settings')">⚙️ Jak zmienić ustawienia konta?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('account-settings')">⚙️ How to change account settings?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('mailbox')">📮 Jak działa skrzynka pocztowa?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('mailbox')">📮 How does mailbox work?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('themes')">🎨 Jak zmienić motyw strony?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('themes')">🎨 How to change site theme?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('security')">🔒 Jak bezpieczne są moje dane?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('security')">🔒 How secure is my data?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('tips')">💡 Porady dla nowych graczy</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('tips')">💡 Tips for new players</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('game-labirynth')">🎮 O grze Labirynt</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('game-labirynth')">🎮 About Maze game</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('game-tictactoe')">⭕ O grze Kółko i krzyżyk</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('game-tictactoe')">⭕ About Tic-tac-toe game</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('contact')">📧 Jak się skontaktować?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('contact')">📧 How to contact?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('google-login')">🔐 Dlaczego Google login?</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('google-login')">🔐 Why Google login?</button>
+                            
+                            <button class="question-btn lang-pl" onclick="askQuestion('future-plans')">🚀 Przyszłe plany</button>
+                            <button class="question-btn lang-en" onclick="askQuestion('future-plans')">🚀 Future plans</button>
+                        </div>
+                    `;
+                }
+            }
+
+            // AI responses
+            const aiResponses = {
+                'how-to-download': {
+                    pl: `<strong>🤖 Jak pobrać gry - instrukcja krok po kroku</strong><br><br>
+                        1. <strong>Zaloguj się przez Google</strong> (obowiązkowe!)<br>
+                        2. Kliknij przycisk "Pobierz grę" przy wybranej grze<br>
+                        3. Plik ZIP zostanie pobrany na Twój komputer<br>
+                        4. Znajdź pobrany plik (zwykle w folderze "Pobrane")<br>
+                        5. Kliknij prawym przyciskiem na plik ZIP<br>
+                        6. Wybierz "Wypakuj wszystko" lub "Rozpakuj tutaj"<br>
+                        7. Otwórz rozpakowany folder<br>
+                        8. Uruchom plik .exe (np. maze.exe lub kolko.exe)<br><br>
+                        
+                        <strong>💰 BONUS:</strong> Otrzymasz 20 monet za każde pobieranie (jednorazowo)!<br>
+                        • Labirynt = 20 monet<br>
+                        • Kółko i krzyżyk = 20 monet`,
+                    
+                    en: `<strong>🤖 How to download games - step by step</strong><br><br>
+                        1. <strong>Sign in with Google</strong> (required!)<br>
+                        2. Click "Download game" button for chosen game<br>
+                        3. ZIP file will be downloaded to your computer<br>
+                        4. Find downloaded file (usually in "Downloads" folder)<br>
+                        5. Right-click on ZIP file<br>
+                        6. Choose "Extract all" or "Extract here"<br>
+                        7. Open extracted folder<br>
+                        8. Run .exe file (e.g. maze.exe or kolko.exe)<br><br>
+                        
+                        <strong>💰 BONUS:</strong> You'll receive 20 coins for each download (one-time)!<br>
+                        • Maze = 20 coins<br>
+                        • Tic-tac-toe = 20 coins`
+                },
+                
+                'coin-system': {
+                    pl: `<strong>🤖 System monet - wszystko co musisz wiedzieć</strong><br><br>
+                        <strong>💰 Jak zdobywać monety:</strong><br>
+                        • 100 monet na start (bonus powitalny)<br>
+                        • 2 monety za każdą minutę na stronie<br>
+                        • 20 monet za pobranie Labiryntu (jednorazowo)<br>
+                        • 20 monet za pobranie Kółko i krzyżyk (jednorazowo)<br>
+                        • 10-150 monet dziennie za logowanie<br>
+                        • 10-200 monet z kuli monet (co godzinę)<br><br>
+                        
+                        <strong>🛍️ Na co wydać monety:</strong><br>
+                        • 30 ekskluzywnych avatarów w sklepie<br>
+                        • Ceny: od 50 do 2500 monet<br>
+                        • Rzadkości: Common, Rare, Epic, Legendary, Mythical<br><br>
+                        
+                        <em>💡 Wskazówka: Zostaw stronę otwartą, aby zdobywać monety automatycznie!</em>`,
+                    
+                    en: `<strong>🤖 Coin system - everything you need to know</strong><br><br>
+                        <strong>💰 How to earn coins:</strong><br>
+                        • 100 coins to start (welcome bonus)<br>
+                        • 2 coins for every minute on site<br>
+                        • 20 coins for downloading Maze (one-time)<br>
+                        • 20 coins for downloading Tic-tac-toe (one-time)<br>
+                        • 10-150 coins daily for login<br>
+                        • 10-200 coins from coin ball (every hour)<br><br>
+                        
+                        <strong>🛍️ What to spend coins on:</strong><br>
+                        • 30 exclusive avatars in shop<br>
+                        • Prices: from 50 to 2500 coins<br>
+                        • Rarities: Common, Rare, Epic, Legendary, Mythical<br><br>
+                        
+                        <em>💡 Tip: Keep the page open to earn coins automatically!</em>`
+                },
+                
+                'shop-avatars': {
+                    pl: `<strong>🤖 Sklep z avatarami - pełna lista</strong><br><br>
+                        <strong>🟢 Common (50-125 monet):</strong><br>
+                        • 🌟 Star Guardian - 50 monet<br>
+                        • 🔥 Fire Elemental - 75 monet<br>
+                        • ❄️ Ice Walker - 100 monet<br>
+                        • 🌺 Nature Spirit - 125 monet<br><br>
+                        
+                        <strong>🔵 Rare (150-300 monet):</strong><br>
+                        • ⚡ Thunder Lord - 150 monet<br>
+                        • 🌙 Moon Dancer - 200 monet<br>
+                        • ☀️ Sun Warrior - 250 monet<br>
+                        • 🌊 Ocean Master - 300 monet<br><br>
+                        
+                        <strong>🟣 Epic (350-500 monet):</strong><br>
+                        • 🌸 Sakura Samurai - 350 monet<br>
+                        • 🎭 Shadow Assassin - 400 monet<br>
+                        • 🦅 Sky Emperor - 450 monet<br>
+                        • 🐺 Wolf Spirit - 500 monet<br><br>
+                        
+                        <strong>🟠 Legendary (600-1300 monet):</strong><br>
+                        • 💀 Death Knight - 600 monet<br>
+                        • 🌈 Rainbow Mage - 700 monet<br>
+                        • ⚔️ Blade Master - 800 monet<br>
+                        • 🏹 Archer Queen - 900 monet<br>
+                        • 🔮 Crystal Sage - 1000 monet<br>
+                        • 🌌 Void Walker - 1100 monet<br>
+                        • 🐲 Dragon Emperor - 1200 monet<br>
+                        • 👑 Ultra VIP Shop - 1300 monet<br><br>
+                        
+                        <strong>🔴 Mythical (1400-2500 monet):</strong><br>
+                        • 🌌 Cosmic Entity - 1400 monet<br>
+                        • 🔥 Phoenix Lord - 1500 monet<br>
+                        • ⚡ Storm Bringer - 1600 monet<br>
+                        • 💎 Diamond Guardian - 1700 monet<br>
+                        • 🌟 Celestial Being - 1800 monet<br>
+                        • 🔮 Time Keeper - 1900 monet<br>
+                        • 👁️ All-Seeing Oracle - 2000 monet<br>
+                        • 🌀 Dimension Walker - 2100 monet<br>
+                        • ⭐ Galaxy Emperor - 2200 monet<br>
+                        • 🎆 Infinity Master - 2500 monet<br><br>
+                        
+                        <em>💡 Kupione avatary są Twoje na zawsze!</em>`,
+                    
+                    en: `<strong>🤖 Avatar shop - full list</strong><br><br>
+                        <strong>🟢 Common (50-125 coins):</strong><br>
+                        • 🌟 Star Guardian - 50 coins<br>
+                        • 🔥 Fire Elemental - 75 coins<br>
+                        • ❄️ Ice Walker - 100 coins<br>
+                        • 🌺 Nature Spirit - 125 coins<br><br>
+                        
+                        <strong>🔵 Rare (150-300 coins):</strong><br>
+                        • ⚡ Thunder Lord - 150 coins<br>
+                        • 🌙 Moon Dancer - 200 coins<br>
+                        • ☀️ Sun Warrior - 250 coins<br>
+                        • 🌊 Ocean Master - 300 coins<br><br>
+                        
+                        <strong>🟣 Epic (350-500 coins):</strong><br>
+                        • 🌸 Sakura Samurai - 350 coins<br>
+                        • 🎭 Shadow Assassin - 400 coins<br>
+                        • 🦅 Sky Emperor - 450 coins<br>
+                        • 🐺 Wolf Spirit - 500 coins<br><br>
+                        
+                        <strong>🟠 Legendary (600-1300 coins):</strong><br>
+                        • 💀 Death Knight - 600 coins<br>
+                        • 🌈 Rainbow Mage - 700 coins<br>
+                        • ⚔️ Blade Master - 800 coins<br>
+                        • 🏹 Archer Queen - 900 coins<br>
+                        • 🔮 Crystal Sage - 1000 coins<br>
+                        • 🌌 Void Walker - 1100 coins<br>
+                        • 🐲 Dragon Emperor - 1200 coins<br>
+                        • 👑 Ultra VIP Shop - 1300 coins<br><br>
+                        
+                        <strong>🔴 Mythical (1400-2500 coins):</strong><br>
+                        • 🌌 Cosmic Entity - 1400 coins<br>
+                        • 🔥 Phoenix Lord - 1500 coins<br>
+                        • ⚡ Storm Bringer - 1600 coins<br>
+                        • 💎 Diamond Guardian - 1700 coins<br>
+                        • 🌟 Celestial Being - 1800 coins<br>
+                        • 🔮 Time Keeper - 1900 coins<br>
+                        • 👁️ All-Seeing Oracle - 2000 coins<br>
+                        • 🌀 Dimension Walker - 2100 coins<br>
+                        • ⭐ Galaxy Emperor - 2200 coins<br>
+                        • 🎆 Infinity Master - 2500 coins<br><br>
+                        
+                        <em>💡 Purchased avatars are yours forever!</em>`
+                },
+                
+                'coin-ball': {
+                    pl: `<strong>🤖 Kula monet - specjalne wydarzenie!</strong><br><br>
+                        <strong>🎱 Jak to działa:</strong><br>
+                        • Co godzinę (o pełnej godzinie) pojawia się złota kula<br>
+                        • Kula odbija się po ekranie<br>
+                        • Musisz ją kliknąć zanim zniknie<br>
+                        • Wydarzenie trwa 2 minuty<br><br>
+                        
+                        <strong>💰 Możliwe nagrody:</strong><br>
+                        • 10 monet - 60% szans<br>
+                        • 20 monet - 30% szans<br>
+                        • 50 monet - 6.2% szans<br>
+                        • 200 monet - 3.8% szans (JACKPOT!)<br><br>
+                        
+                        <strong>⏰ Ważne:</strong><br>
+                        • Musisz być zalogowany<br>
+                        • Timer pokazuje czas do następnej kuli<br>
+                        • Kula pojawia się automatycznie<br>
+                        • Jest trudna do złapania!<br><br>
+                        
+                        <em>💡 Bądź czujny o pełnych godzinach!</em>`,
+                    
+                    en: `<strong>🤖 Coin ball - special event!</strong><br><br>
+                        <strong>🎱 How it works:</strong><br>
+                        • Golden ball appears every hour (on the hour)<br>
+                        • Ball bounces around the screen<br>
+                        • You must click it before it disappears<br>
+                        • Event lasts 2 minutes<br><br>
+                        
+                        <strong>💰 Possible rewards:</strong><br>
+                        • 10 coins - 60% chance<br>
+                        • 20 coins - 30% chance<br>
+                        • 50 coins - 6.2% chance<br>
+                        • 200 coins - 3.8% chance (JACKPOT!)<br><br>
+                        
+                        <strong>⏰ Important:</strong><br>
+                        • You must be logged in<br>
+                        • Timer shows time to next ball<br>
+                        • Ball appears automatically<br>
+                        • It's hard to catch!<br><br>
+                        
+                        <em>💡 Be alert at full hours!</em>`
+                },
+                
+                'legendary-avatar': {
+                    pl: `<strong>🤖 Legendarny Avatar - najwyższe osiągnięcie!</strong><br><br>
+                        <strong>🌈 Jak zdobyć Legendarny Avatar:</strong><br><br>
+                        Musisz odblokować WSZYSTKIE avatary:<br>
+                        ✅ 8 standardowych (darmowe)<br>
+                        ✅ 5 Premium (pobierz obie gry)<br>
+                        ✅ VIP (prezent powitalny)<br>
+                        ✅ Ultra VIP (ukończ Labirynt lub 1300 monet)<br>
+                        ✅ Loyal Player (7-dniowa seria)<br>
+                        ✅ 30 ze sklepu (50-2500 monet każdy)<br><br>
+                        
+                        <strong>💎 Co otrzymasz:</strong><br>
+                        • Ekskluzywny tęczowy avatar<br>
+                        • Status LEGENDY społeczności<br>
+                        • Specjalne efekty świetlne<br>
+                        • Uznanie wszystkich graczy<br><br>
+                        
+                        <strong>📊 Twój postęp:</strong><br>
+                        Sprawdzaj swoje avatary w ustawieniach!<br><br>
+                        
+                        <em>🏆 Tylko najlepsi mogą to osiągnąć!</em>`,
+                    
+                    en: `<strong>🤖 Legendary Avatar - highest achievement!</strong><br><br>
+                        <strong>🌈 How to get Legendary Avatar:</strong><br><br>
+                        You must unlock ALL avatars:<br>
+                        ✅ 8 standard (free)<br>
+                        ✅ 5 Premium (download both games)<br>
+                        ✅ VIP (welcome gift)<br>
+                        ✅ Ultra VIP (complete Maze or 1300 coins)<br>
+                        ✅ Loyal Player (7-day streak)<br>
+                        ✅ 30 from shop (50-2500 coins each)<br><br>
+                        
+                        <strong>💎 What you'll get:</strong><br>
+                        • Exclusive rainbow avatar<br>
+                        • Community LEGEND status<br>
+                        • Special light effects<br>
+                        • Recognition from all players<br><br>
+                        
+                        <strong>📊 Your progress:</strong><br>
+                        Check your avatars in settings!<br><br>
+                        
+                        <em>🏆 Only the best can achieve this!</em>`
+                },
+                
+                'daily-rewards': {
+                    pl: `<strong>🤖 Codzienne nagrody - system 7-dniowy</strong><br><br>
+                        <strong>📅 Jak to działa:</strong><br>
+                        • Loguj się codziennie aby otrzymać rosnące nagrody<br>
+                        • Po 7 dniach cykl się resetuje<br>
+                        • Przerwanie serii resetuje postęp<br>
+                        • Kliknij przycisk "Daily Login" aby sprawdzić<br><br>
+                        
+                        <strong>💰 Nagrody:</strong><br>
+                        • Dzień 1: 10 monet<br>
+                        • Dzień 2: 20 monet<br>
+                        • Dzień 3: 30 monet<br>
+                        • Dzień 4: 50 monet<br>
+                        • Dzień 5: 70 monet<br>
+                        • Dzień 6: 100 monet<br>
+                        • Dzień 7: 150 monet + 🌟 Loyal Player Avatar!<br><br>
+                        
+                        <strong>⏰ Timer:</strong><br>
+                        • Pokazuje czas do następnej nagrody<br>
+                        • Resetuje się o północy<br>
+                        • Możesz odebrać tylko raz dziennie<br><br>
+                        
+                        <em>💡 Nie przerywaj serii dla najlepszych nagród!</em>`,
+                    
+                    en: `<strong>🤖 Daily rewards - 7-day system</strong><br><br>
+                        <strong>📅 How it works:</strong><br>
+                        • Login daily to get increasing rewards<br>
+                        • After 7 days cycle resets<br>
+                        • Breaking streak resets progress<br>
+                        • Click "Daily Login" button to check<br><br>
+                        
+                        <strong>💰 Rewards:</strong><br>
+                        • Day 1: 10 coins<br>
+                        • Day 2: 20 coins<br>
+                        • Day 3: 30 coins<br>
+                        • Day 4: 50 coins<br>
+                        • Day 5: 70 coins<br>
+                        • Day 6: 100 coins<br>
+                        • Day 7: 150 coins + 🌟 Loyal Player Avatar!<br><br>
+                        
+                        <strong>⏰ Timer:</strong><br>
+                        • Shows time to next reward<br>
+                        • Resets at midnight<br>
+                        • Can claim only once per day<br><br>
+                        
+                        <em>💡 Don't break the streak for best rewards!</em>`
+                },
+                
+                'coin-alley': {
+                    pl: `<strong>🤖 Aleja monet - długoterminowe cele!</strong><br><br>
+                        <strong>🏆 Co to jest:</strong><br>
+                        • System nagród za łączną liczbę zebranych monet<br>
+                        • Nie musisz mieć monet - liczy się suma zebrana<br>
+                        • 300 avatarów do odblokowania!<br>
+                        • Co 100 monet = nowy avatar<br><br>
+                        
+                        <strong>📊 Postęp:</strong><br>
+                        • Od 100 do 30,000 monet<br>
+                        • Wydane monety nadal się liczą<br>
+                        • Pasek postępu pokazuje ile zebrano<br>
+                        • Avatary odblokowują się automatycznie<br><br>
+                        
+                        <strong>🎨 Rzadkości:</strong><br>
+                        • 100-1000: Common<br>
+                        • 1000-2000: Rare<br>
+                        • 2000-5000: Epic<br>
+                        • 5000-10000: Legendary<br>
+                        • 10000-30000: Mythical<br><br>
+                        
+                        <em>💡 To maraton, nie sprint - zbieraj systematycznie!</em>`,
+                    
+                    en: `<strong>🤖 Coin alley - long-term goals!</strong><br><br>
+                        <strong>🏆 What it is:</strong><br>
+                        • Reward system for total coins collected<br>
+                        • You don't need to have coins - total collected counts<br>
+                        • 300 avatars to unlock!<br>
+                        • Every 100 coins = new avatar<br><br>
+                        
+                        <strong>📊 Progress:</strong><br>
+                        • From 100 to 30,000 coins<br>
+                        • Spent coins still count<br>
+                        • Progress bar shows amount collected<br>
+                        • Avatars unlock automatically<br><br>
+                        
+                        <strong>🎨 Rarities:</strong><br>
+                        • 100-1000: Common<br>
+                        • 1000-2000: Rare<br>
+                        • 2000-5000: Epic<br>
+                        • 5000-10000: Legendary<br>
+                        • 10000-30000: Mythical<br><br>
+                        
+                        <em>💡 It's a marathon, not a sprint - collect systematically!</em>`
+                },
+                
+                'premium-avatars': {
+                    pl: `<strong>🤖 Premium Avatary - ekskluzywna kolekcja!</strong><br><br>
+                        <strong>⭐ Jak odblokować:</strong><br>
+                        Musisz pobrać OBY dwie gry:<br>
+                        • ✅ Labirynt<br>
+                        • ✅ Kółko i krzyżyk<br><br>
+                        
+                        <strong>🎨 Co otrzymasz:</strong><br>
+                        5 wyjątkowych avatarów:<br>
+                        • ⚔️ Cyber Warrior<br>
+                        • 🐉 Dragon Master<br>
+                        • 🚀 Space Commander<br>
+                        • 🧙 Mystic Wizard<br>
+                        • 🥷 Shadow Ninja<br><br>
+                        
+                        <strong>✨ Cechy specjalne:</strong><br>
+                        • Złota ramka wokół avatara<br>
+                        • Animowany efekt świetlny<br>
+                        • Status PREMIUM w profilu<br>
+                        • Dostęp do przyszłych bonusów<br><br>
+                        
+                        <em>💡 To najprostszy sposób na ekskluzywne avatary!</em>`,
+                    
+                    en: `<strong>🤖 Premium Avatars - exclusive collection!</strong><br><br>
+                        <strong>⭐ How to unlock:</strong><br>
+                        You must download BOTH games:<br>
+                        • ✅ Maze<br>
+                        • ✅ Tic-tac-toe<br><br>
+                        
+                        <strong>🎨 What you get:</strong><br>
+                        5 unique avatars:<br>
+                        • ⚔️ Cyber Warrior<br>
+                        • 🐉 Dragon Master<br>
+                        • 🚀 Space Commander<br>
+                        • 🧙 Mystic Wizard<br>
+                        • 🥷 Shadow Ninja<br><br>
+                        
+                        <strong>✨ Special features:</strong><br>
+                        • Golden frame around avatar<br>
+                        • Animated light effect<br>
+                        • PREMIUM status in profile<br>
+                        • Access to future bonuses<br><br>
+                        
+                        <em>💡 It's the simplest way to exclusive avatars!</em>`
+                },
+                
+                'vip-avatar': {
+                    pl: `<strong>🤖 VIP Avatar - prezent powitalny!</strong><br><br>
+                        <strong>👑 Jak otrzymać:</strong><br>
+                        • Zaloguj się po raz pierwszy<br>
+                        • Sprawdź skrzynkę pocztową<br>
+                        • Kliknij "Odbierz" przy prezencie<br>
+                        • Avatar zostanie odblokowany!<br><br>
+                        
+                        <strong>🎁 Cechy VIP:</strong><br>
+                        • Fioletowa ramka premium<br>
+                        • Złote akcenty<br>
+                        • Status VIP w profilu<br>
+                        • Specjalny efekt animacji<br><br>
+                        
+                        <strong>📮 Skrzynka pocztowa:</strong><br>
+                        • Znajduje się w Ustawieniach<br>
+                        • Czerwona kropka = nowa wiadomość<br>
+                        • Prezenty czekają na odbiór<br><br>
+                        
+                        <em>💡 Nie przegap darmowego VIP avatara!</em>`,
+                    
+                    en: `<strong>🤖 VIP Avatar - welcome gift!</strong><br><br>
+                        <strong>👑 How to get:</strong><br>
+                        • Login for the first time<br>
+                        • Check your mailbox<br>
+                        • Click "Claim" on the gift<br>
+                        • Avatar will be unlocked!<br><br>
+                        
+                        <strong>🎁 VIP features:</strong><br>
+                        • Purple premium frame<br>
+                        • Golden accents<br>
+                        • VIP status in profile<br>
+                        • Special animation effect<br><br>
+                        
+                        <strong>📮 Mailbox:</strong><br>
+                        • Located in Settings<br>
+                        • Red dot = new message<br>
+                        • Gifts waiting to claim<br><br>
+                        
+                        <em>💡 Don't miss the free VIP avatar!</em>`
+                },
+                
+                'ultra-vip': {
+                    pl: `<strong>🤖 Ultra VIP - najwyższy prestiż!</strong><br><br>
+                        <strong>💎 Dwa sposoby zdobycia:</strong><br><br>
+                        
+                        <strong>1️⃣ Ukończ grę Labirynt:</strong><br>
+                        • Przejdź WSZYSTKIE poziomy<br>
+                        • Zrób screenshot ukończenia<br>
+                        • Wyślij na: quatar2022@o2.pl<br>
+                        • Otrzymasz kod odblokowujący<br><br>
+                        
+                        <strong>2️⃣ Kup w sklepie:</strong><br>
+                        • "👑 Ultra VIP Shop" - 1300 monet<br>
+                        • Natychmiastowe odblokowanie<br>
+                        • Najszybsza metoda<br><br>
+                        
+                        <strong>💫 Benefity Ultra VIP:</strong><br>
+                        • Diamentowy avatar z efektami<br>
+                        • Status ULTRA VIP<br>
+                        • Tęczowa animacja ramki<br>
+                        • Priorytet w przyszłych funkcjach<br><br>
+                        
+                        <em>💡 To prawdziwe wyzwanie dla elity!</em>`,
+                    
+                    en: `<strong>🤖 Ultra VIP - highest prestige!</strong><br><br>
+                        <strong>💎 Two ways to get:</strong><br><br>
+                        
+                        <strong>1️⃣ Complete Maze game:</strong><br>
+                        • Finish ALL levels<br>
+                        • Take completion screenshot<br>
+                        • Send to: quatar2022@o2.pl<br>
+                        • Receive unlock code<br><br>
+                        
+                        <strong>2️⃣ Buy in shop:</strong><br>
+                        • "👑 Ultra VIP Shop" - 1300 coins<br>
+                        • Instant unlock<br>
+                        • Fastest method<br><br>
+                        
+                        <strong>💫 Ultra VIP benefits:</strong><br>
+                        • Diamond avatar with effects<br>
+                        • ULTRA VIP status<br>
+                        • Rainbow frame animation<br>
+                        • Priority in future features<br><br>
+                        
+                        <em>💡 A true challenge for the elite!</em>`
+                },
+                
+                'account-settings': {
+                    pl: `<strong>🤖 Ustawienia konta - pełny przewodnik</strong><br><br>
+                        <strong>👤 Profil:</strong><br>
+                        • Zmień swój avatar<br>
+                        • Zobacz datę rejestracji<br>
+                        • Sprawdź ostatnie logowanie<br>
+                        • Status konta (VIP, Premium, itd.)<br><br>
+                        
+                        <strong>📮 Skrzynka pocztowa:</strong><br>
+                        • Odbieraj prezenty i nagrody<br>
+                        • Czytaj ważne wiadomości<br>
+                        • VIP Avatar czeka w prezencie!<br><br>
+                        
+                        <strong>🎨 Wygląd:</strong><br>
+                        • Zmień motyw (ciemny, niebieski, zielony)<br>
+                        • Dostosuj język (PL/EN)<br>
+                        • Włącz/wyłącz animacje<br>
+                        • Efekty dźwiękowe<br><br>
+                        
+                        <strong>♿ Dostępność:</strong><br>
+                        • Wysoki kontrast<br>
+                        • Rozmiar czcionki (mały/średni/duży)<br>
+                        • Automatyczny zapis<br><br>
+                        
+                        <strong>⚠️ Strefa zagrożenia:</strong><br>
+                        • Usuń konto (nieodwracalne!)<br>
+                        • Wymaga potwierdzenia CAPTCHA<br><br>
+                        
+                        <em>💡 Wszystkie zmiany są zapisywane automatycznie!</em>`,
+                    
+                    en: `<strong>🤖 Account settings - complete guide</strong><br><br>
+                        <strong>👤 Profile:</strong><br>
+                        • Change your avatar<br>
+                        • View registration date<br>
+                        • Check last login<br>
+                        • Account status (VIP, Premium, etc.)<br><br>
+                        
+                        <strong>📮 Mailbox:</strong><br>
+                        • Receive gifts and rewards<br>
+                        • Read important messages<br>
+                        • VIP Avatar waiting as gift!<br><br>
+                        
+                        <strong>🎨 Appearance:</strong><br>
+                        • Change theme (dark, blue, green)<br>
+                        • Adjust language (PL/EN)<br>
+                        • Enable/disable animations<br>
+                        • Sound effects<br><br>
+                        
+                        <strong>♿ Accessibility:</strong><br>
+                        • High contrast<br>
+                        • Font size (small/medium/large)<br>
+                        • Auto save<br><br>
+                        
+                        <strong>⚠️ Danger Zone:</strong><br>
+                        • Delete account (irreversible!)<br>
+                        • Requires CAPTCHA confirmation<br><br>
+                        
+                        <em>💡 All changes are saved automatically!</em>`
+                },
+                
+                'avatar-types': {
+                    pl: `<strong>🤖 Wszystkie typy avatarów - kompletny przewodnik</strong><br><br>
+                        <strong>🟢 Standardowe (8 sztuk - DARMOWE):</strong><br>
+                        • Dostępne od razu dla wszystkich<br>
+                        • Podstawowe style i kolory<br>
+                        • Idealne na start!<br><br>
+                        
+                        <strong>⭐ Premium (5 sztuk):</strong><br>
+                        • Odblokuj pobierając OBU gier<br>
+                        • Cyber Warrior, Dragon Master, Space Commander<br>
+                        • Mystic Wizard, Shadow Ninja<br>
+                        • Tęczowa ramka wokół avatara!<br><br>
+                        
+                        <strong>👑 VIP Avatar:</strong><br>
+                        • Prezent powitalny w skrzynce!<br>
+                        • Fioletowa poświata<br>
+                        • Ekskluzywny design<br><br>
+                        
+                        <strong>💎 Ultra VIP Avatar:</strong><br>
+                        • Ukończ WSZYSTKIE poziomy Labiryntu<br>
+                        • LUB kup w sklepie za 1300 monet<br>
+                        • Różowo-złota animacja<br>
+                        • Najrzadszy pojedynczy avatar!<br><br>
+                        
+                        <strong>🌟 Loyal Player Avatar:</strong><br>
+                        • 7-dniowa seria logowania<br>
+                        • Zielona poświata<br>
+                        • Nagroda za lojalność<br><br>
+                        
+                        <strong>🛍️ Avatary ze sklepu (30 sztuk):</strong><br>
+                        • Common: 50-125 monet (4 sztuki)<br>
+                        • Rare: 150-300 monet (4 sztuki)<br>
+                        • Epic: 350-500 monet (4 sztuki)<br>
+                        • Legendary: 600-1300 monet (8 sztuk)<br>
+                        • Mythical: 1400-2500 monet (10 sztuk)<br><br>
+                        
+                        <strong>🏛️ Aleja Monet (300 avatarów!):</strong><br>
+                        • Co 100 zebranych monet = nowy avatar<br>
+                        • Od 100 do 30,000 monet<br>
+                        • Monety liczą się nawet po wydaniu!<br><br>
+                        
+                        <strong>🌈 LEGENDARNY AVATAR:</strong><br>
+                        • Musisz mieć WSZYSTKIE inne avatary<br>
+                        • Tęczowa animacja non-stop<br>
+                        • Najwyższe osiągnięcie w grze!<br>
+                        • Status legendy społeczności<br><br>
+                        
+                        <em>💡 Łącznie: 350+ unikalnych avatarów do zdobycia!</em>`,
+                    
+                    en: `<strong>🤖 All avatar types - complete guide</strong><br><br>
+                        <strong>🟢 Standard (8 pieces - FREE):</strong><br>
+                        • Available immediately for everyone<br>
+                        • Basic styles and colors<br>
+                        • Perfect to start!<br><br>
+                        
+                        <strong>⭐ Premium (5 pieces):</strong><br>
+                        • Unlock by downloading BOTH games<br>
+                        • Cyber Warrior, Dragon Master, Space Commander<br>
+                        • Mystic Wizard, Shadow Ninja<br>
+                        • Rainbow border around avatar!<br><br>
+                        
+                        <strong>👑 VIP Avatar:</strong><br>
+                        • Welcome gift in mailbox!<br>
+                        • Purple glow<br>
+                        • Exclusive design<br><br>
+                        
+                        <strong>💎 Ultra VIP Avatar:</strong><br>
+                        • Complete ALL Maze levels<br>
+                        • OR buy in shop for 1300 coins<br>
+                        • Pink-gold animation<br>
+                        • Rarest single avatar!<br><br>
+                        
+                        <strong>🌟 Loyal Player Avatar:</strong><br>
+                        • 7-day login streak<br>
+                        • Green glow<br>
+                        • Loyalty reward<br><br>
+                        
+                        <strong>🛍️ Shop avatars (30 pieces):</strong><br>
+                        • Common: 50-125 coins (4 pieces)<br>
+                        • Rare: 150-300 coins (4 pieces)<br>
+                        • Epic: 350-500 coins (4 pieces)<br>
+                        • Legendary: 600-1300 coins (8 pieces)<br>
+                        • Mythical: 1400-2500 coins (10 pieces)<br><br>
+                        
+                        <strong>🏛️ Coin Alley (300 avatars!):</strong><br>
+                        • Every 100 collected coins = new avatar<br>
+                        • From 100 to 30,000 coins<br>
+                        • Coins count even after spending!<br><br>
+                        
+                        <strong>🌈 LEGENDARY AVATAR:</strong><br>
+                        • Must have ALL other avatars<br>
+                        • Rainbow animation non-stop<br>
+                        • Highest achievement in game!<br>
+                        • Community legend status<br><br>
+                        
+                        <em>💡 Total: 350+ unique avatars to collect!</em>`
+                },
+                
+                'troubleshooting': {
+                    pl: `<strong>🤖 Rozwiązywanie problemów</strong><br><br>
+                        <strong>❌ Nie mogę pobrać gry:</strong><br>
+                        • Sprawdź czy jesteś zalogowany<br>
+                        • Odśwież stronę (F5)<br>
+                        • Wyczyść pamięć podręczną<br>
+                        • Spróbuj innej przeglądarki<br><br>
+                        
+                        <strong>❌ Nie widzę moich monet:</strong><br>
+                        • Zaloguj się ponownie<br>
+                        • Sprawdź górę ekranu<br>
+                        • Monety pojawiają się po zalogowaniu<br><br>
+                        
+                        <strong>❌ Avatar się nie zmienia:</strong><br>
+                        • Kliknij avatar w ustawieniach<br>
+                        • Wybierz nowy i poczekaj<br>
+                        • Odśwież stronę jeśli trzeba<br><br>
+                        
+                        <strong>❌ Gra się nie uruchamia:</strong><br>
+                        • Rozpakuj CAŁY folder ZIP<br>
+                        • Uruchom plik .exe<br>
+                        • Windows Defender: "Uruchom mimo to"<br>
+                        • Wymagany Windows 7 lub nowszy<br><br>
+                        
+                        <strong>❌ Zgubiłem hasło:</strong><br>
+                        • Używamy Google Sign-In<br>
+                        • Odzyskaj hasło Google<br>
+                        • Nie przechowujemy haseł<br><br>
+                        
+                        <em>💡 Nadal masz problem? Napisz: quatar2022@o2.pl</em>`,
+                    
+                    en: `<strong>🤖 Troubleshooting</strong><br><br>
+                        <strong>❌ Can't download game:</strong><br>
+                        • Check if you're logged in<br>
+                        • Refresh page (F5)<br>
+                        • Clear browser cache<br>
+                        • Try different browser<br><br>
+                        
+                        <strong>❌ Can't see my coins:</strong><br>
+                        • Login again<br>
+                        • Check top of screen<br>
+                        • Coins appear after login<br><br>
+                        
+                        <strong>❌ Avatar won't change:</strong><br>
+                        • Click avatar in settings<br>
+                        • Select new one and wait<br>
+                        • Refresh page if needed<br><br>
+                        
+                        <strong>❌ Game won't start:</strong><br>
+                        • Extract ENTIRE ZIP folder<br>
+                        • Run .exe file<br>
+                        • Windows Defender: "Run anyway"<br>
+                        • Requires Windows 7 or newer<br><br>
+                        
+                        <strong>❌ Lost password:</strong><br>
+                        • We use Google Sign-In<br>
+                        • Recover Google password<br>
+                        • We don't store passwords<br><br>
+                        
+                        <em>💡 Still have problems? Email: quatar2022@o2.pl</em>`
+                },
+                
+                'game-info': {
+                    pl: `<strong>🤖 Informacje o grach</strong><br><br>
+                        <strong>🌀 LABIRYNT:</strong><br>
+                        • 10 poziomów trudności<br>
+                        • Coraz większe labirynty<br>
+                        • Timer odliczający czas<br>
+                        • Znajdź wyjście przed czasem!<br>
+                        • Nagroda: 50 monet za pobranie<br>
+                        • Ultra VIP za ukończenie wszystkich!<br><br>
+                        
+                        <strong>❌⭕ KÓŁKO I KRZYŻYK:</strong><br>
+                        • Graj przeciwko komputerowi<br>
+                        • 3 poziomy trudności AI<br>
+                        • Klasyczna rozgrywka 3x3<br>
+                        • Śledzenie wyników<br>
+                        • Nagroda: 30 monet za pobranie<br><br>
+                        
+                        <strong>📊 Wymagania systemowe:</strong><br>
+                        • Windows 7/8/10/11<br>
+                        • 50 MB wolnego miejsca<br>
+                        • Nie wymaga instalacji<br>
+                        • Działa offline<br><br>
+                        
+                        <em>💡 Obie gry są w pełni darmowe!</em>`,
+                    
+                    en: `<strong>🤖 Game information</strong><br><br>
+                        <strong>🌀 MAZE:</strong><br>
+                        • 10 difficulty levels<br>
+                        • Increasingly larger mazes<br>
+                        • Time countdown timer<br>
+                        • Find exit before time runs out!<br>
+                        • Reward: 50 coins for download<br>
+                        • Ultra VIP for completing all!<br><br>
+                        
+                        <strong>❌⭕ TIC-TAC-TOE:</strong><br>
+                        • Play against computer<br>
+                        • 3 AI difficulty levels<br>
+                        • Classic 3x3 gameplay<br>
+                        • Score tracking<br>
+                        • Reward: 30 coins for download<br><br>
+                        
+                        <strong>📊 System requirements:</strong><br>
+                        • Windows 7/8/10/11<br>
+                        • 50 MB free space<br>
+                        • No installation required<br>
+                        • Works offline<br><br>
+                        
+                        <em>💡 Both games are completely free!</em>`
+                },
+                
+                'privacy-security': {
+                    pl: `<strong>🤖 Prywatność i bezpieczeństwo</strong><br><br>
+                        <strong>🔒 Co zbieramy:</strong><br>
+                        • Tylko dane z Google (imię, email, zdjęcie)<br>
+                        • Postępy w grze (monety, avatary)<br>
+                        • Preferencje użytkownika<br><br>
+                        
+                        <strong>🛡️ Jak chronimy dane:</strong><br>
+                        • Szyfrowanie localStorage<br>
+                        • Bezpieczne Google OAuth 2.0<br>
+                        • Brak przesyłania na serwery<br>
+                        • Wszystko lokalnie w przeglądarce<br><br>
+                        
+                        <strong>🗑️ Twoje prawa:</strong><br>
+                        • Usuń konto w każdej chwili<br>
+                        • Eksportuj swoje dane<br>
+                        • Zmień ustawienia prywatności<br>
+                        • Kontroluj co udostępniasz<br><br>
+                        
+                        <strong>🚫 Czego NIE robimy:</strong><br>
+                        • Nie sprzedajemy danych<br>
+                        • Nie śledzimy aktywności<br>
+                        • Nie wysyłamy spamu<br>
+                        • Nie udostępniamy osobom trzecim<br><br>
+                        
+                        <em>💡 Bezpieczeństwo to nasz priorytet!</em>`,
+                    
+                    en: `<strong>🤖 Privacy and security</strong><br><br>
+                        <strong>🔒 What we collect:</strong><br>
+                        • Only Google data (name, email, photo)<br>
+                        • Game progress (coins, avatars)<br>
+                        • User preferences<br><br>
+                        
+                        <strong>🛡️ How we protect data:</strong><br>
+                        • localStorage encryption<br>
+                        • Secure Google OAuth 2.0<br>
+                        • No server transmission<br>
+                        • Everything locally in browser<br><br>
+                        
+                        <strong>🗑️ Your rights:</strong><br>
+                        • Delete account anytime<br>
+                        • Export your data<br>
+                        • Change privacy settings<br>
+                        • Control what you share<br><br>
+                        
+                        <strong>🚫 What we DON'T do:</strong><br>
+                        • Don't sell data<br>
+                        • Don't track activity<br>
+                        • Don't send spam<br>
+                        • Don't share with third parties<br><br>
+                        
+                        <em>💡 Security is our priority!</em>`
+                }
+            };
+
             clearChatbotResponses();
             showTypingIndicator();
             
@@ -5362,6 +6771,24 @@
             });
             
             updateMailbox();
+            
+            // Update preference toggles
+            if (currentUser.preferences) {
+                const notifToggle = document.getElementById('notificationsToggle');
+                if (notifToggle) notifToggle.checked = currentUser.preferences.notifications !== false;
+                
+                const soundToggle = document.getElementById('soundEffectsToggle');
+                if (soundToggle) soundToggle.checked = currentUser.preferences.soundEffects !== false;
+                
+                const animToggle = document.getElementById('animationsToggle');
+                if (animToggle) animToggle.checked = currentUser.preferences.animations !== false;
+                
+                const contrastToggle = document.getElementById('highContrastToggle');
+                if (contrastToggle) contrastToggle.checked = currentUser.preferences.highContrast === true;
+                
+                const autoSaveToggle = document.getElementById('autoSaveToggle');
+                if (autoSaveToggle) autoSaveToggle.checked = currentUser.preferences.autoSave !== false;
+            }
         }
 
         function showSettingsTab(tabName) {
@@ -5657,6 +7084,28 @@
             const languageDropdown = document.getElementById('languageDropdownContent');
             if (helpDropdown) helpDropdown.style.display = 'none';
             if (languageDropdown) languageDropdown.style.display = 'none';
+            
+            // Update user preference
+            if (currentUser && gameDB) {
+                updateUserPreference('language', lang);
+            }
+        }
+
+        // Theme functions
+        function changeTheme(theme) {
+            if (!['dark', 'blue', 'green'].includes(theme)) return;
+            
+            document.body.className = document.body.className.replace(/theme-\w+/g, '');
+            document.body.classList.add(`theme-${theme}`);
+            
+            document.querySelectorAll('.color-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            
+            const activeOption = document.querySelector(`.color-option[data-theme="${theme}"]`);
+            if (activeOption) activeOption.classList.add('active');
+            
+            updateUserPreference('theme', theme);
         }
 
         // —— EVENT LISTENERS —— 
@@ -5666,6 +7115,8 @@
             const authModal = document.getElementById('authModal');
             const settingsModal = document.getElementById('settingsModal');
             const shopModal = document.getElementById('shopModal');
+            const dailyLoginModal = document.getElementById('dailyLoginModal');
+            const coinAlleyModal = document.getElementById('coinAlleyModal');
             const helpDropdown = document.getElementById('helpDropdownContent');
             const languageDropdown = document.getElementById('languageDropdownContent');
             
@@ -5683,6 +7134,12 @@
             }
             if (event.target === shopModal) {
                 closeShop();
+            }
+            if (event.target === dailyLoginModal) {
+                closeDailyLogin();
+            }
+            if (event.target === coinAlleyModal) {
+                closeCoinAlley();
             }
             
             if (!event.target.closest('.help-dropdown') && helpDropdown) {
@@ -5714,6 +7171,8 @@
                 closeSettings();
                 closeChatbot();
                 closeShop();
+                closeDailyLogin();
+                closeCoinAlley();
                 closeUserModal();
             }
         });
@@ -5787,6 +7246,7 @@
                     console.log('Mailbox system ready');
                     console.log('Daily login bonus system ready');
                     console.log('Coin ball system ready');
+                    console.log('Coin alley system ready');
                     console.log(`Current date and time: ${new Date().toISOString()}`);
                     console.log(`Database contains ${gameDB?.users?.size || 0} users`);
                     console.log(`Current user: ${currentUser?.username || 'Not logged in'}`);
@@ -5862,11 +7322,85 @@
             <span class="coin-amount">0</span>
         </div>
 
+        <!-- Coin ball timer -->
+        <div class="coin-ball-timer">
+            <span class="coin-icon">🎱</span>
+            <span class="coin-ball-timer-text"></span>
+        </div>
+
+        <!-- Daily login button -->
+        <button class="daily-login-btn show" onclick="openDailyLogin()">
+            <span class="lang-pl">📅 Codzienna nagroda</span>
+            <span class="lang-en">📅 Daily reward</span>
+        </button>
+
+        <!-- Coin alley button -->
+        <button class="coin-alley-btn show" onclick="openCoinAlley()">
+            <span class="lang-pl">🏛️ Aleja Monet</span>
+            <span class="lang-en">🏛️ Coin Alley</span>
+        </button>
+
         <!-- Shop button -->
         <button class="shop-btn" onclick="openShop()">
             <span class="lang-pl">🛍️ Sklep</span>
             <span class="lang-en">🛍️ Shop</span>
         </button>
+
+        <!-- Daily login modal -->
+        <div id="dailyLoginModal" class="daily-login-modal">
+            <div class="daily-login-content">
+                <span class="close-auth" onclick="closeDailyLogin()">&times;</span>
+                <div class="daily-login-header">
+                    <h2>
+                        <span class="lang-pl">📅 Codzienna nagroda</span>
+                        <span class="lang-en">📅 Daily Reward</span>
+                    </h2>
+                </div>
+                
+                <div class="daily-login-timer">
+                    <h3>
+                        <span class="lang-pl">Następna nagroda za:</span>
+                        <span class="lang-en">Next reward in:</span>
+                    </h3>
+                    <div class="timer-display" id="dailyTimer">00:00:00</div>
+                </div>
+                
+                <div class="daily-rewards-grid">
+                    <!-- Daily rewards will be loaded here -->
+                </div>
+                
+                <button class="claim-daily-btn" onclick="claimDailyBonus()">
+                    <span class="lang-pl">Odbierz nagrodę</span>
+                    <span class="lang-en">Claim reward</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Coin alley modal -->
+        <div id="coinAlleyModal" class="coin-alley-modal">
+            <div class="coin-alley-content">
+                <span class="close-auth" onclick="closeCoinAlley()">&times;</span>
+                <div class="coin-alley-header">
+                    <h2>
+                        <span class="lang-pl">🏛️ Aleja Monet</span>
+                        <span class="lang-en">🏛️ Coin Alley</span>
+                    </h2>
+                    <p>
+                        <span class="lang-pl">Zdobywaj avatary za zebrane monety! Monety się liczą nawet po wydaniu.</span>
+                        <span class="lang-en">Earn avatars for collected coins! Coins count even after spending.</span>
+                    </p>
+                </div>
+                
+                <div class="coin-alley-progress">
+                    <div class="coin-alley-progress-bar" id="coinAlleyProgressBar"></div>
+                    <div class="coin-alley-progress-text" id="coinAlleyProgressText">0 / 100</div>
+                </div>
+                
+                <div class="coin-alley-rewards" id="coinAlleyRewards">
+                    <!-- Coin alley rewards will be loaded here -->
+                </div>
+            </div>
+        </div>
 
         <!-- Shop modal -->
         <div id="shopModal" class="shop-modal">
@@ -5941,6 +7475,21 @@
                 
                 <div class="dropdown-option lang-pl" onclick="askQuestion('legendary-avatar'); toggleChatbot();">🌈 Legendarny Avatar</div>
                 <div class="dropdown-option lang-en" onclick="askQuestion('legendary-avatar'); toggleChatbot();">🌈 Legendary Avatar</div>
+                
+                <div class="dropdown-option lang-pl" onclick="askQuestion('account-settings'); toggleChatbot();">⚙️ Ustawienia konta</div>
+                <div class="dropdown-option lang-en" onclick="askQuestion('account-settings'); toggleChatbot();">⚙️ Account settings</div>
+                
+                <div class="dropdown-option lang-pl" onclick="askQuestion('avatar-types'); toggleChatbot();">🎭 Typy avatarów</div>
+                <div class="dropdown-option lang-en" onclick="askQuestion('avatar-types'); toggleChatbot();">🎭 Avatar types</div>
+                
+                <div class="dropdown-option lang-pl" onclick="askQuestion('troubleshooting'); toggleChatbot();">❓ Rozwiązywanie problemów</div>
+                <div class="dropdown-option lang-en" onclick="askQuestion('troubleshooting'); toggleChatbot();">❓ Troubleshooting</div>
+                
+                <div class="dropdown-option lang-pl" onclick="askQuestion('game-info'); toggleChatbot();">🎮 Informacje o grach</div>
+                <div class="dropdown-option lang-en" onclick="askQuestion('game-info'); toggleChatbot();">🎮 Game information</div>
+                
+                <div class="dropdown-option lang-pl" onclick="askQuestion('privacy-security'); toggleChatbot();">🔒 Prywatność</div>
+                <div class="dropdown-option lang-en" onclick="askQuestion('privacy-security'); toggleChatbot();">🔒 Privacy</div>
             </div>
         </div>
 
@@ -6110,10 +7659,17 @@
                     <h3 class="lang-pl">🎨 Wygląd</h3>
                     <h3 class="lang-en">🎨 Appearance</h3>
                     
-                    <div class="lang-pl">Opcje dotyczące wyglądu interfejsu</div>
-                    <div class="lang-en">Interface appearance options</div>
+                    <div class="style-option">
+                        <div class="lang-pl"><strong>Motyw kolorystyczny:</strong></div>
+                        <div class="lang-en"><strong>Color theme:</strong></div>
+                        <div class="color-picker">
+                            <div class="color-option active" data-theme="dark" style="background: #0f0f1a;" onclick="changeTheme('dark')"></div>
+                            <div class="color-option" data-theme="blue" style="background: #0a1628;" onclick="changeTheme('blue')"></div>
+                            <div class="color-option" data-theme="green" style="background: #0a1a0a;" onclick="changeTheme('green')"></div>
+                        </div>
+                    </div>
                     
-                    <div style="margin-top: 15px;">
+                    <div style="margin-top: 20px;">
                         <div class="lang-pl"><strong>Język:</strong></div>
                         <div class="lang-en"><strong>Language:</strong></div>
                         <div style="margin-top: 10px; display: flex; gap: 10px;">
@@ -6132,6 +7688,36 @@
                             </div>
                             <label class="switch">
                                 <input type="checkbox" id="notificationsToggle" checked onchange="updateUserPreference('notifications', this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <div class="lang-pl"><strong>Efekty dźwiękowe:</strong></div>
+                        <div class="lang-en"><strong>Sound effects:</strong></div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                            <div>
+                                <div class="lang-pl">Dźwięki w aplikacji</div>
+                                <div class="lang-en">App sounds</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="soundEffectsToggle" checked onchange="updateUserPreference('soundEffects', this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <div class="lang-pl"><strong>Animacje:</strong></div>
+                        <div class="lang-en"><strong>Animations:</strong></div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                            <div>
+                                <div class="lang-pl">Efekty animacji</div>
+                                <div class="lang-en">Animation effects</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="animationsToggle" checked onchange="updateUserPreference('animations', this.checked)">
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -6286,7 +7872,7 @@
                     <div style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.3); animation: premiumGlow 2s ease-in-out infinite;">
                         <strong>💰 NOWOŚĆ! System monet!</strong><br>
                         Otrzymujesz 100 monet na start + 2 monety za każdą minutę na stronie!<br>
-                        Wydaj je w nowym sklepie na 20 ekskluzywnych avatarów!
+                        Wydaj je w nowym sklepie na 30 ekskluzywnych avatarów!
                     </div>
                     
                     <div style="margin-top: 20px; padding: 15px; background: rgba(156, 39, 176, 0.1); border-radius: 8px; border: 1px solid rgba(156, 39, 176, 0.3); animation: vipGlow 2.5s ease-in-out infinite;">
@@ -6297,7 +7883,8 @@
                     <div style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.3); animation: premiumGlow 2s ease-in-out infinite;">
                         <strong>⭐ BONUS! Pobierz obie gry = 5 Premium Avatarów!</strong><br>
                         Po pobraniu Labiryntu i Kółko i krzyżyk otrzymasz dostęp do ekskluzywnych avatarów:<br>
-                        ⚔️ Cyber Warrior, 🐉 Dragon Master, 🚀 Space Commander, 🧙 Mystic Wizard, 🥷 Shadow Ninja
+                        ⚔️ Cyber Warrior, 🐉 Dragon Master, 🚀 Space Commander, 🧙 Mystic Wizard, 🥷 Shadow Ninja<br>
+                        💰 BONUS: 50 monet za Labirynt, 30 monet za Kółko i krzyżyk!
                     </div>
                     
                     <div style="margin-top: 20px; padding: 15px; background: rgba(255, 0, 128, 0.1); border-radius: 8px; border: 1px solid rgba(255, 0, 128, 0.3); animation: ultraVipGlow 3s ease-in-out infinite;">
@@ -6325,6 +7912,13 @@
                         Dzień 4: 50 💰 | Dzień 5: 70 💰 | Dzień 6: 100 💰<br>
                         Dzień 7: 150 💰 + 🌟 Loyal Player Avatar!
                     </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 165, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 165, 0, 0.3);">
+                        <strong>🏛️ ALEJA MONET! 300 avatarów do zdobycia!</strong><br>
+                        Co 100 zebranych monet odblokowujesz nowy avatar!<br>
+                        Monety liczą się nawet po wydaniu - od 100 do 30,000 monet!<br>
+                        To największa kolekcja avatarów w grze!
+                    </div>
                 </div>
                 
                 <div class="lang-en">
@@ -6347,7 +7941,7 @@
                     <div style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.3); animation: premiumGlow 2s ease-in-out infinite;">
                         <strong>💰 NEW! Coin system!</strong><br>
                         Get 100 coins to start + 2 coins for every minute on site!<br>
-                        Spend them in the new shop on 20 exclusive avatars!
+                        Spend them in the new shop on 30 exclusive avatars!
                     </div>
                     
                     <div style="margin-top: 20px; padding: 15px; background: rgba(156, 39, 176, 0.1); border-radius: 8px; border: 1px solid rgba(156, 39, 176, 0.3); animation: vipGlow 2.5s ease-in-out infinite;">
@@ -6358,7 +7952,8 @@
                     <div style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.3); animation: premiumGlow 2s ease-in-out infinite;">
                         <strong>⭐ BONUS! Download both games = 5 Premium Avatars!</strong><br>
                         After downloading Maze and Tic-tac-toe you'll get access to exclusive avatars:<br>
-                        ⚔️ Cyber Warrior, 🐉 Dragon Master, 🚀 Space Commander, 🧙 Mystic Wizard, 🥷 Shadow Ninja
+                        ⚔️ Cyber Warrior, 🐉 Dragon Master, 🚀 Space Commander, 🧙 Mystic Wizard, 🥷 Shadow Ninja<br>
+                        💰 BONUS: 50 coins for Maze, 30 coins for Tic-tac-toe!
                     </div>
                     
                     <div style="margin-top: 20px; padding: 15px; background: rgba(255, 0, 128, 0.1); border-radius: 8px; border: 1px solid rgba(255, 0, 128, 0.3); animation: ultraVipGlow 3s ease-in-out infinite;">
@@ -6385,6 +7980,13 @@
                         Day 1: 10 💰 | Day 2: 20 💰 | Day 3: 30 💰<br>
                         Day 4: 50 💰 | Day 5: 70 💰 | Day 6: 100 💰<br>
                         Day 7: 150 💰 + 🌟 Loyal Player Avatar!
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 165, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 165, 0, 0.3);">
+                        <strong>🏛️ COIN ALLEY! 300 avatars to collect!</strong><br>
+                        Every 100 collected coins unlocks new avatar!<br>
+                        Coins count even after spending - from 100 to 30,000 coins!<br>
+                        The biggest avatar collection in the game!
                     </div>
                 </div>
             </div>
@@ -6439,6 +8041,7 @@
                         <li>Zawartość skrzynki pocztowej</li>
                         <li>Stan monet i zakupy w sklepie</li>
                         <li>Daily login streak</li>
+                        <li>Aleja Monet - postępy</li>
                     </ul>
                     
                     <h4>🗑️ Twoje prawa:</h4>
@@ -6463,6 +8066,7 @@
                         <li>Mailbox content</li>
                         <li>Coin balance and shop purchases</li>
                         <li>Daily login streak</li>
+                        <li>Coin Alley progress</li>
                     </ul>
                     
                     <h4>🗑️ Your rights:</h4>
